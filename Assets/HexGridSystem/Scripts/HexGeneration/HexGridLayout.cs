@@ -1,6 +1,3 @@
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HexGridLayout : MonoBehaviour
@@ -9,13 +6,13 @@ public class HexGridLayout : MonoBehaviour
     public Vector2Int gridSize;
 
     [Header("Tile Settings")]
-    public float outerSize = 1f;
-    public float innerSize = 0f;
-    public float height = 1f;
-    public bool isFlatTopped;
-    public float hexDistance = 0.01f;
-
-    public Material material;
+    [SerializeField] private float outerSize = 1f;
+    [SerializeField] private float innerSize = 0f;
+    [SerializeField] private float height = 1f;
+    [SerializeField] private bool isFlatTopped;
+    [SerializeField] private float hexDistance = 0.01f;
+    [SerializeField] private Material mainMaterial;
+    [SerializeField] private Material borderMaterial;
 
     private void OnEnable()
     {
@@ -23,7 +20,7 @@ public class HexGridLayout : MonoBehaviour
     }
     private void OnValidate()
     {
-        if (Application.isPlaying)
+        if (Application.isPlaying && isActiveAndEnabled)
         {
             LayoutGrid();
         }
@@ -31,40 +28,47 @@ public class HexGridLayout : MonoBehaviour
 
     private void ClearGrid()
     {
-        List<Transform> children = new();
-        for(int i = 0; i < transform.childCount; i++)
+        for (int i = transform.childCount - 1; i >= 0; i--)
         {
-            children.Add(transform.GetChild(i));
-        }
-        for (int i = 0; i < children.Count; i++)
-        {
-            Destroy(children[i].gameObject);
+            Destroy(transform.GetChild(i).gameObject);
         }
     }
 
     private void LayoutGrid()
-    { 
+    {
         ClearGrid();
 
         for (int y = 0; y < gridSize.y; y++)
         {
             for (int x = 0; x < gridSize.x; x++)
             {
-                GameObject tile = new GameObject($"Hex {y},{x}", typeof(HexRenderer));
-                tile.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, y));
+                GameObject hex = new GameObject($"Hex {y},{x}");
+                GameObject tile = new GameObject("Tile", typeof(HexRenderer));
+                GameObject border = new GameObject("Border", typeof(HexRenderer));
 
-                HexRenderer hexRenderer = tile.GetComponent<HexRenderer>();
-                hexRenderer.isFlatTopped = isFlatTopped;
-                hexRenderer.outerSize = outerSize;
-                hexRenderer.innerSize = innerSize;
-                hexRenderer.height = height;
-                hexRenderer.SetMaterial(material);
-                hexRenderer.DrawMesh();
-                hexRenderer.outerSize = hexDistance;
+                hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, y));
+                border.transform.position = new Vector3(0, height / 2, 0); 
 
-                tile.transform.SetParent(transform, true);
+                SetupHexComponents(tile, outerSize, innerSize, height, mainMaterial, hexDistance);
+                SetupHexComponents(border, outerSize, outerSize - outerSize / 10, .1f, borderMaterial, hexDistance);
+
+                tile.transform.SetParent(hex.transform, false);
+                border.transform.SetParent(hex.transform, false);
+                hex.transform.SetParent(transform, true);
             }
         }
+    }
+
+    private void SetupHexComponents(GameObject obj, float outerSize, float innerSize, float height, Material material, float hexDistance)
+    {
+        HexRenderer renderer = obj.GetComponent<HexRenderer>();
+        renderer.isFlatTopped = isFlatTopped;
+        renderer.outerSize = outerSize;
+        renderer.innerSize = innerSize;
+        renderer.height = height;
+        renderer.SetMaterial(material);
+        renderer.DrawMesh();
+        renderer.outerSize = hexDistance;
     }
 
     private Vector3 GetPositionForHexFromCoordinate(Vector2Int coordinate)
