@@ -476,7 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4b9c69554c8a34e8dc8fdf8ba2d810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HexGridLayout
-  gridSize: {x: 2, y: 2}
+  gridSize: {x: 5, y: 5}
   outerSize: 1
   innerSize: 0
   height: 0.1

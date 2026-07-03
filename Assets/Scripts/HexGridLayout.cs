@@ -12,7 +12,7 @@ public class HexGridLayout : MonoBehaviour
     public float outerSize = 1f;
     public float innerSize = 0f;
     public float height = 1f;
-    //public bool isFlatTopped;
+    public bool isFlatTopped;
     public float hexDistance = 0.01f;
 
     public Material material;
@@ -23,10 +23,10 @@ public class HexGridLayout : MonoBehaviour
     }
     private void OnValidate()
     {
-        //if (Application.isPlaying)
-        //{
-        //    LayoutGrid();
-        //}
+        if (Application.isPlaying)
+        {
+            LayoutGrid();
+        }
     }
 
     private void ClearGrid()
@@ -98,7 +98,7 @@ public class HexGridLayout : MonoBehaviour
         }
         else
         {
-            shouldOffset = (row % 2) == 0;
+            shouldOffset = (column % 2) == 0;
             width = 2f * size;
             height = Mathf.Sqrt(3) * size;
 
