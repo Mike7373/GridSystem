@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static HexGridLayout;
+using static ChunkGenerator;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshCollider))]
-public class HexRenderer : MonoBehaviour
+public class HexTileRenderer : MonoBehaviour
 {
     private Mesh _mesh;
     private MeshFilter _meshFilter;
     private MeshRenderer _meshRenderer;
     private MeshCollider _meshCollider;
+    [HideInInspector] public bool isMainTile;
 
     private List<Face> _faces;
 
@@ -19,7 +20,7 @@ public class HexRenderer : MonoBehaviour
     public float outerSize = 1;
     public float height = 1;
     public bool isFlatTopped;
-    public List<TileRate> tileDataRates = new();
+    public static List<TileRate> tileDataRates = new();
 
     private void Awake()
     {
@@ -58,7 +59,7 @@ public class HexRenderer : MonoBehaviour
     public void SetMaterial(Material material)
     {
         _meshRenderer.material = material;
-        if (tileDataRates.Count > 0)
+        if (isMainTile && tileDataRates.Count > 0)
         {
             Color color = GetGenTileData().color;
             MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
@@ -168,15 +169,15 @@ public class HexRenderer : MonoBehaviour
         for (int i = 0; i < tileDataRates.Count; i++)
         {
             tiles.Add(tileDataRates[i]);
-            percSum += tileDataRates[i].percentage;
+            percSum += tileDataRates[i].spawnWeigth;
         }
 
         rand = UnityEngine.Random.Range(0, percSum);
 
         for (int i = 0, minRate = 0; i < tiles.Count; i++)
         {
-            int maxRate = minRate + tiles[i].percentage;
-            Debug.Log($"[HexRenderer/GetGenTileData] Rand: {rand} | MinRate: {minRate} | MaxRate: {maxRate} | PercSum: {percSum}");
+            int maxRate = minRate + tiles[i].spawnWeigth;
+            //Debug.Log($"[HexRenderer/GetGenTileData] Rand: {rand} | MinRate: {minRate} | MaxRate: {maxRate} | PercSum: {percSum}");
 
             if (rand >= minRate && rand < maxRate)
             {

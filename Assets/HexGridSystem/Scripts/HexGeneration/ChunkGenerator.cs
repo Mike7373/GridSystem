@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HexGridLayout : MonoBehaviour
+public class ChunkGenerator : MonoBehaviour
 {
     [Header("Grid Settings")]
     public Vector2Int gridSize;
@@ -41,13 +41,15 @@ public class HexGridLayout : MonoBehaviour
     {
         ClearGrid();
 
+        HexTileRenderer.tileDataRates = tileDataRates;
+
         for (int y = 0; y < gridSize.y; y++)
         {
             for (int x = 0; x < gridSize.x; x++)
             {
                 GameObject hex = new GameObject($"Hex {y},{x}");
-                GameObject tile = new GameObject("Tile", typeof(HexRenderer));
-                GameObject border = new GameObject("Border", typeof(HexRenderer));
+                GameObject tile = new GameObject("Tile", typeof(HexTileRenderer));
+                GameObject border = new GameObject("Border", typeof(HexTileRenderer));
 
                 hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, y));
                 border.transform.position = new Vector3(0, height, 0);
@@ -64,15 +66,12 @@ public class HexGridLayout : MonoBehaviour
 
     private void SetupHexComponents(GameObject obj, float outerSize, float innerSize, float height, Material material, float hexDistance, bool isMain = false)
     {
-        HexRenderer renderer = obj.GetComponent<HexRenderer>();
+        HexTileRenderer renderer = obj.GetComponent<HexTileRenderer>();
         renderer.isFlatTopped = isFlatTopped;
         renderer.outerSize = outerSize;
         renderer.innerSize = innerSize;
         renderer.height = height;
-        if (isMain)
-        {
-            renderer.tileDataRates = tileDataRates;
-        }
+        renderer.isMainTile = isMain;
         renderer.SetMaterial(material);
         renderer.DrawMesh();
         renderer.outerSize = hexDistance;
@@ -128,7 +127,7 @@ public class HexGridLayout : MonoBehaviour
     public struct TileRate
     {
         public TileData tileData;
-        [Range(0, 100)] public int percentage;
+        [Range(0, 100)] public int spawnWeigth;
     }
 
 }
