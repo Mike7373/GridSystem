@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HexGridLayout : MonoBehaviour
@@ -13,6 +15,7 @@ public class HexGridLayout : MonoBehaviour
     [SerializeField] private float hexDistance = 0.01f;
     [SerializeField] private Material mainMaterial;
     [SerializeField] private Material borderMaterial;
+    [SerializeField] private List<TileRate> tileDataRates;
 
     private void OnEnable()
     {
@@ -47,9 +50,9 @@ public class HexGridLayout : MonoBehaviour
                 GameObject border = new GameObject("Border", typeof(HexRenderer));
 
                 hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, y));
-                border.transform.position = new Vector3(0, height / 2, 0); 
+                border.transform.position = new Vector3(0, height, 0);
 
-                SetupHexComponents(tile, outerSize, innerSize, height, mainMaterial, hexDistance);
+                SetupHexComponents(tile, outerSize, innerSize, height, mainMaterial, hexDistance, true);
                 SetupHexComponents(border, outerSize, outerSize - outerSize / 10, .1f, borderMaterial, hexDistance);
 
                 tile.transform.SetParent(hex.transform, false);
@@ -59,13 +62,17 @@ public class HexGridLayout : MonoBehaviour
         }
     }
 
-    private void SetupHexComponents(GameObject obj, float outerSize, float innerSize, float height, Material material, float hexDistance)
+    private void SetupHexComponents(GameObject obj, float outerSize, float innerSize, float height, Material material, float hexDistance, bool isMain = false)
     {
         HexRenderer renderer = obj.GetComponent<HexRenderer>();
         renderer.isFlatTopped = isFlatTopped;
         renderer.outerSize = outerSize;
         renderer.innerSize = innerSize;
         renderer.height = height;
+        if (isMain)
+        {
+            renderer.tileDataRates = tileDataRates;
+        }
         renderer.SetMaterial(material);
         renderer.DrawMesh();
         renderer.outerSize = hexDistance;
@@ -116,4 +123,12 @@ public class HexGridLayout : MonoBehaviour
 
         return new Vector3(xPosition, 0, -yPosition);
     }
+
+    [Serializable]
+    public struct TileRate
+    {
+        public TileData tileData;
+        [Range(0, 100)] public int percentage;
+    }
+
 }

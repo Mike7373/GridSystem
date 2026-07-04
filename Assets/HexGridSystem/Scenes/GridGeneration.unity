@@ -517,6 +517,15 @@ MonoBehaviour:
   hexDistance: 0.01
   mainMaterial: {fileID: 2100000, guid: 26985202e5071de458996bb44b738d30, type: 2}
   borderMaterial: {fileID: 2100000, guid: 784a8f71bc6b02c42a185ace79b180f0, type: 2}
+  tileDataRates:
+  - tileData: {fileID: 11400000, guid: 79f8786c516e1bd44938b8bbb6653d47, type: 2}
+    percentage: 20
+  - tileData: {fileID: 11400000, guid: 9e5eae5c5081e784d9fd07c8a6c95b90, type: 2}
+    percentage: 20
+  - tileData: {fileID: 11400000, guid: a6eae7c8a3b3882409f9f9f2a67c654c, type: 2}
+    percentage: 50
+  - tileData: {fileID: 11400000, guid: aed199f69174ee848bdd9b68a66986fe, type: 2}
+    percentage: 10
 --- !u!1 &1591568396
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +563,7 @@ MonoBehaviour:
   outerSize: 1
   height: 0.1
   isFlatTopped: 0
+  tileDataRates: []
 --- !u!23 &1591568398
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -700,6 +710,7 @@ MonoBehaviour:
   outerSize: 1
   height: 0.2
   isFlatTopped: 0
+  tileDataRates: []
 --- !u!23 &1672675498
 MeshRenderer:
   m_ObjectHideFlags: 0

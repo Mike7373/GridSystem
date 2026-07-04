@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static HexGridLayout;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
@@ -18,6 +19,7 @@ public class HexRenderer : MonoBehaviour
     public float outerSize = 1;
     public float height = 1;
     public bool isFlatTopped;
+    public List<TileRate> tileDataRates = new();
 
     private void Awake()
     {
@@ -56,6 +58,13 @@ public class HexRenderer : MonoBehaviour
     public void SetMaterial(Material material)
     {
         _meshRenderer.material = material;
+        if (tileDataRates.Count > 0)
+        {
+            Color color = GetGenTileData().color;
+            MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
+            propertyBlock.SetColor("_BaseColor", color);
+            _meshRenderer.SetPropertyBlock(propertyBlock);
+        }
     }
     private void DrawFaces()
     {
@@ -119,7 +128,7 @@ public class HexRenderer : MonoBehaviour
         Vector3 pointC = GetPoint(outerRad, heightA, point < 5 ? point + 1 : 0);
         Vector3 pointD = GetPoint(outerRad, heightA, point);
 
-        Debug.Log($"Face {point}: A={pointA}, B={pointB}, C={pointC}, D={pointD}");
+        //Debug.Log($"Face {point}: A={pointA}, B={pointB}, C={pointC}, D={pointD}");
 
 
         List<Vector3> vertices = new List<Vector3>() { pointA, pointB, pointC, pointD };
@@ -141,6 +150,46 @@ public class HexRenderer : MonoBehaviour
         float angleRad = Mathf.PI / 180 * angleDeg;
 
         return new Vector3(size * Mathf.Cos(angleRad), height, size * Mathf.Sin(angleRad));
+    }
+
+    private TileData GetGenTileData()
+    {
+        if (tileDataRates.Count <= 0)
+        {
+            Debug.LogWarning("No tiles data available");
+            return null;
+        }
+
+        int percSum = 0;
+        int rand;
+        List<TileRate> tiles = new List<TileRate>();
+        TileData result = null;
+
+        for (int i = 0; i < tileDataRates.Count; i++)
+        {
+            tiles.Add(tileDataRates[i]);
+            percSum += tileDataRates[i].percentage;
+        }
+
+        rand = UnityEngine.Random.Range(0, percSum);
+
+        for (int i = 0, minRate = 0; i < tiles.Count; i++)
+        {
+            int maxRate = minRate + tiles[i].percentage;
+            Debug.Log($"[HexRenderer/GetGenTileData] Rand: {rand} | MinRate: {minRate} | MaxRate: {maxRate} | PercSum: {percSum}");
+
+            if (rand >= minRate && rand < maxRate)
+            {
+                result = tiles[i].tileData;
+                break;
+            }
+            minRate = maxRate;
+        }
+        if (result == null)
+        {
+            Debug.LogError($"[HexGridLayout/GetGenTileData] Result is null!");
+        }
+        return result;
     }
 
     private void OnDrawGizmos()
