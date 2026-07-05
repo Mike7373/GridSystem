@@ -15,24 +15,17 @@ public class HexTileRenderer : MonoBehaviour
 
     private List<Face> _faces;
 
-    public Material material;
-    public float innerSize = 1;
-    public float outerSize = 1;
-    public float height = 1;
-    public bool isFlatTopped;
-    public static List<TileRate> tileDataRates = new();
+    private Material material;
+    private float innerSize = 1;
+    private float outerSize = 1;
+    private float height = 1;
+    private bool isFlatTopped;
+    private List<TileRate> tileDataRates = new();
 
+    #region Unity Functions
     private void Awake()
     {
-        _meshFilter = GetComponent<MeshFilter>();
-        _meshRenderer = GetComponent<MeshRenderer>();
-        _meshCollider = GetComponent<MeshCollider>();
-
-        _mesh = new Mesh();
-        _mesh.name = "Hex";
-
-        _meshFilter.mesh = _mesh;
-        _meshRenderer.material = material;
+        Initialize();
     }
 
     private void OnEnable()
@@ -47,7 +40,35 @@ public class HexTileRenderer : MonoBehaviour
             DrawMesh();
         }
     }
+    private void OnDrawGizmos()
+    {
+        if (_faces == null) return;
 
+        Gizmos.color = Color.red;
+        foreach (var face in _faces)
+        {
+            foreach (var v in face.vertices)
+            {
+                Gizmos.DrawSphere(transform.TransformPoint(v), 0.05f);
+            }
+        }
+    }
+    #endregion
+
+    private void Initialize()
+    {
+        _meshFilter = GetComponent<MeshFilter>();
+        _meshRenderer = GetComponent<MeshRenderer>();
+        _meshCollider = GetComponent<MeshCollider>();
+
+        _mesh = new Mesh();
+        _mesh.name = "Hex";
+
+        _meshFilter.mesh = _mesh;
+        _meshRenderer.material = material;
+    }
+
+    #region Mesh Rendering Functions
     public void DrawMesh()
     {
         DrawFaces();
@@ -152,7 +173,13 @@ public class HexTileRenderer : MonoBehaviour
 
         return new Vector3(size * Mathf.Cos(angleRad), height, size * Mathf.Sin(angleRad));
     }
+    #endregion
 
+    #region Data Funtions
+    public void SetTileDataRates(List<TileRate> tileDataRates)
+    {
+        this.tileDataRates = tileDataRates;
+    }
     private TileData GetGenTileData()
     {
         if (tileDataRates.Count <= 0)
@@ -193,19 +220,20 @@ public class HexTileRenderer : MonoBehaviour
         return result;
     }
 
-    private void OnDrawGizmos()
+    public void SetupHexComponents(float outerSize, float innerSize, float height, 
+                                    Material material, float hexDistance, bool isMainTile, bool isFlatTopped)
     {
-        if (_faces == null) return;
-
-        Gizmos.color = Color.red;
-        foreach (var face in _faces)
-        {
-            foreach (var v in face.vertices)
-            {
-                Gizmos.DrawSphere(transform.TransformPoint(v), 0.05f);
-            }
-        }
+        this.isFlatTopped = isFlatTopped;
+        this.outerSize = outerSize;
+        this.innerSize = innerSize;
+        this.height = height;
+        this.isMainTile = isMainTile;
+        SetMaterial(material);
+        DrawMesh();
+        this.outerSize = hexDistance;
     }
+
+    #endregion
 
     public struct Face
     {

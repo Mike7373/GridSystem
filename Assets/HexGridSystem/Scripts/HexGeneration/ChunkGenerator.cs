@@ -41,40 +41,29 @@ public class ChunkGenerator : MonoBehaviour
     {
         ClearGrid();
 
-        HexTileRenderer.tileDataRates = tileDataRates;
-
-        for (int y = 0; y < gridSize.y; y++)
+        for (int z = 0; z < gridSize.y; z++)
         {
             for (int x = 0; x < gridSize.x; x++)
             {
-                GameObject hex = new GameObject($"Hex {y},{x}");
+                GameObject hex = new GameObject($"Hex {z},{x}");
                 GameObject tile = new GameObject("Tile", typeof(HexTileRenderer));
                 GameObject border = new GameObject("Border", typeof(HexTileRenderer));
 
-                hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, y));
-                border.transform.position = new Vector3(0, height, 0);
+                HexTileRenderer tileRenderer = tile.GetComponent<HexTileRenderer>();
+                HexTileRenderer borderRenderer = border.GetComponent<HexTileRenderer>();
 
-                SetupHexComponents(tile, outerSize, innerSize, height, mainMaterial, hexDistance, true);
-                SetupHexComponents(border, outerSize, outerSize - outerSize / 10, .1f, borderMaterial, hexDistance);
+                hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, z));
+                border.transform.position = new Vector3(0, height, 0);
+                
+                tileRenderer.SetTileDataRates(tileDataRates);
+                tileRenderer.SetupHexComponents(outerSize, innerSize, height, mainMaterial, hexDistance, true, isFlatTopped);
+                borderRenderer.SetupHexComponents(outerSize, outerSize - outerSize / 10, .1f, borderMaterial, hexDistance, false, isFlatTopped);
 
                 tile.transform.SetParent(hex.transform, false);
                 border.transform.SetParent(hex.transform, false);
                 hex.transform.SetParent(transform, true);
             }
         }
-    }
-
-    private void SetupHexComponents(GameObject obj, float outerSize, float innerSize, float height, Material material, float hexDistance, bool isMain = false)
-    {
-        HexTileRenderer renderer = obj.GetComponent<HexTileRenderer>();
-        renderer.isFlatTopped = isFlatTopped;
-        renderer.outerSize = outerSize;
-        renderer.innerSize = innerSize;
-        renderer.height = height;
-        renderer.isMainTile = isMain;
-        renderer.SetMaterial(material);
-        renderer.DrawMesh();
-        renderer.outerSize = hexDistance;
     }
 
     private Vector3 GetPositionForHexFromCoordinate(Vector2Int coordinate)
@@ -84,7 +73,7 @@ public class ChunkGenerator : MonoBehaviour
         float width;
         float height;
         float xPosition;
-        float yPosition;
+        float zPosition;
         bool shouldOffset;
         float horizontalDistance;
         float verticalDistance;
@@ -103,7 +92,7 @@ public class ChunkGenerator : MonoBehaviour
             offset = shouldOffset ? width / 2 : 0;
 
             xPosition = column * horizontalDistance + offset;
-            yPosition = row * verticalDistance;
+            zPosition = row * verticalDistance;
 
         }
         else
@@ -117,10 +106,10 @@ public class ChunkGenerator : MonoBehaviour
 
             offset = shouldOffset ? height / 2 : 0;
             xPosition = column * horizontalDistance;
-            yPosition = row * verticalDistance - offset;
+            zPosition = row * verticalDistance - offset;
         }
 
-        return new Vector3(xPosition, 0, -yPosition);
+        return new Vector3(transform.position.x + xPosition, 0, transform.position.z + (-zPosition));
     }
 
     [Serializable]
