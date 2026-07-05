@@ -1,11 +1,9 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TileData", menuName = "TileGeneration/TileData")]
-public class TileData : ScriptableObject
+[CreateAssetMenu(fileName = "TileDataSettings", menuName = "Map Generation/Tile Data Settings")]
+public class TileDataSettings : ScriptableObject
 {
-    [Header("Generics")]
     public TileType tileType;
-    [Header("Aspect")]
     public Color color;
     public GameObject defaultPrefab;
 }

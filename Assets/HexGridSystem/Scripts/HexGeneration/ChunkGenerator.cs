@@ -15,7 +15,7 @@ public class ChunkGenerator : MonoBehaviour
     [SerializeField] private float hexDistance = 0.01f;
     [SerializeField] private Material mainMaterial;
     [SerializeField] private Material borderMaterial;
-    [SerializeField] private List<TileRate> tileDataRates;
+    [SerializeField] private ChunkSettings tileDataRates;
 
     private void OnEnable()
     {
@@ -111,12 +111,4 @@ public class ChunkGenerator : MonoBehaviour
 
         return new Vector3(transform.position.x + xPosition, 0, transform.position.z + (-zPosition));
     }
-
-    [Serializable]
-    public struct TileRate
-    {
-        public TileData tileData;
-        [Range(0, 100)] public int spawnWeigth;
-    }
-
 }

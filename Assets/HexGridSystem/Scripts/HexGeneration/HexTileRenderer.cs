@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static ChunkGenerator;
+using static ChunkSettings;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
@@ -11,7 +11,8 @@ public class HexTileRenderer : MonoBehaviour
     private MeshFilter _meshFilter;
     private MeshRenderer _meshRenderer;
     private MeshCollider _meshCollider;
-    [HideInInspector] public bool isMainTile;
+    private bool _isMainTile;
+    public bool IsMainTile { get { return _isMainTile; } set { _isMainTile = value; } }
 
     private List<Face> _faces;
 
@@ -20,7 +21,7 @@ public class HexTileRenderer : MonoBehaviour
     private float outerSize = 1;
     private float height = 1;
     private bool isFlatTopped;
-    private List<TileRate> tileDataRates = new();
+    private ChunkSettings chunkSettings;
 
     #region Unity Functions
     private void Awake()
@@ -80,7 +81,7 @@ public class HexTileRenderer : MonoBehaviour
     public void SetMaterial(Material material)
     {
         _meshRenderer.material = material;
-        if (isMainTile && tileDataRates.Count > 0)
+        if (IsMainTile && chunkSettings.generationData.Count > 0)
         {
             Color color = GetGenTileData().color;
             MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
@@ -176,13 +177,15 @@ public class HexTileRenderer : MonoBehaviour
     #endregion
 
     #region Data Funtions
-    public void SetTileDataRates(List<TileRate> tileDataRates)
+    public void SetTileDataRates(ChunkSettings settings)
     {
-        this.tileDataRates = tileDataRates;
+        chunkSettings = settings;
     }
-    private TileData GetGenTileData()
+    private TileDataSettings GetGenTileData()
     {
-        if (tileDataRates.Count <= 0)
+        List<TileGenerationRate> generationData = chunkSettings.generationData;
+
+        if (chunkSettings.generationData.Count <= 0)
         {
             Debug.LogWarning("No tiles data available");
             return null;
@@ -190,13 +193,13 @@ public class HexTileRenderer : MonoBehaviour
 
         int percSum = 0;
         int rand;
-        List<TileRate> tiles = new List<TileRate>();
-        TileData result = null;
+        List<TileGenerationRate> tiles = new List<TileGenerationRate>();
+        TileDataSettings result = null;
 
-        for (int i = 0; i < tileDataRates.Count; i++)
+        for (int i = 0; i < generationData.Count; i++)
         {
-            tiles.Add(tileDataRates[i]);
-            percSum += tileDataRates[i].spawnWeigth;
+            tiles.Add(generationData[i]);
+            percSum += generationData[i].spawnWeigth;
         }
 
         rand = UnityEngine.Random.Range(0, percSum);
@@ -220,14 +223,14 @@ public class HexTileRenderer : MonoBehaviour
         return result;
     }
 
-    public void SetupHexComponents(float outerSize, float innerSize, float height, 
+    public void SetupHexComponents(float outerSize, float innerSize, float height,
                                     Material material, float hexDistance, bool isMainTile, bool isFlatTopped)
     {
         this.isFlatTopped = isFlatTopped;
         this.outerSize = outerSize;
         this.innerSize = innerSize;
         this.height = height;
-        this.isMainTile = isMainTile;
+        this.IsMainTile = isMainTile;
         SetMaterial(material);
         DrawMesh();
         this.outerSize = hexDistance;

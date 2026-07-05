@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &7989357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7989356}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9991f73c977fa75408c7e5c7dff7e79d, type: 3}
   m_Name: 
@@ -156,17 +156,7 @@ MonoBehaviour:
   hexDistance: 0.01
   mainMaterial: {fileID: 2100000, guid: 26985202e5071de458996bb44b738d30, type: 2}
   borderMaterial: {fileID: 2100000, guid: 784a8f71bc6b02c42a185ace79b180f0, type: 2}
-  tileDataRates:
-  - tileData: {fileID: 11400000, guid: bd966d058589a72478581daa83337726, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: 79f8786c516e1bd44938b8bbb6653d47, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: 9e5eae5c5081e784d9fd07c8a6c95b90, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: a6eae7c8a3b3882409f9f9f2a67c654c, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: aed199f69174ee848bdd9b68a66986fe, type: 2}
-    spawnWeigth: 20
+  tileDataRates: {fileID: 0}
 --- !u!4 &7989358
 Transform:
   m_ObjectHideFlags: 0
@@ -511,7 +501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &973550375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +509,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973550374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9991f73c977fa75408c7e5c7dff7e79d, type: 3}
   m_Name: 
@@ -532,17 +522,7 @@ MonoBehaviour:
   hexDistance: 0.01
   mainMaterial: {fileID: 2100000, guid: 26985202e5071de458996bb44b738d30, type: 2}
   borderMaterial: {fileID: 2100000, guid: 784a8f71bc6b02c42a185ace79b180f0, type: 2}
-  tileDataRates:
-  - tileData: {fileID: 11400000, guid: bd966d058589a72478581daa83337726, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: 79f8786c516e1bd44938b8bbb6653d47, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: 9e5eae5c5081e784d9fd07c8a6c95b90, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: a6eae7c8a3b3882409f9f9f2a67c654c, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: aed199f69174ee848bdd9b68a66986fe, type: 2}
-    spawnWeigth: 20
+  tileDataRates: {fileID: 0}
 --- !u!4 &973550376
 Transform:
   m_ObjectHideFlags: 0
@@ -574,7 +554,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1126936438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,7 +562,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126936437}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9991f73c977fa75408c7e5c7dff7e79d, type: 3}
   m_Name: 
@@ -595,17 +575,7 @@ MonoBehaviour:
   hexDistance: 0.01
   mainMaterial: {fileID: 2100000, guid: 26985202e5071de458996bb44b738d30, type: 2}
   borderMaterial: {fileID: 2100000, guid: 784a8f71bc6b02c42a185ace79b180f0, type: 2}
-  tileDataRates:
-  - tileData: {fileID: 11400000, guid: bd966d058589a72478581daa83337726, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: 79f8786c516e1bd44938b8bbb6653d47, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: 9e5eae5c5081e784d9fd07c8a6c95b90, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: a6eae7c8a3b3882409f9f9f2a67c654c, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: aed199f69174ee848bdd9b68a66986fe, type: 2}
-    spawnWeigth: 20
+  tileDataRates: {fileID: 0}
 --- !u!4 &1126936439
 Transform:
   m_ObjectHideFlags: 0
@@ -706,17 +676,7 @@ MonoBehaviour:
   hexDistance: 0.01
   mainMaterial: {fileID: 2100000, guid: 26985202e5071de458996bb44b738d30, type: 2}
   borderMaterial: {fileID: 2100000, guid: 784a8f71bc6b02c42a185ace79b180f0, type: 2}
-  tileDataRates:
-  - tileData: {fileID: 11400000, guid: bd966d058589a72478581daa83337726, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: 79f8786c516e1bd44938b8bbb6653d47, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: 9e5eae5c5081e784d9fd07c8a6c95b90, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: a6eae7c8a3b3882409f9f9f2a67c654c, type: 2}
-    spawnWeigth: 20
-  - tileData: {fileID: 11400000, guid: aed199f69174ee848bdd9b68a66986fe, type: 2}
-    spawnWeigth: 20
+  tileDataRates: {fileID: 11400000, guid: 4fa4e727da96cd9489bcdb9cca62793f, type: 2}
 --- !u!1 &1591568396
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8bf31864ff4984083a033351b12a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HexRenderer
-  isMainTile: 0
 --- !u!23 &1591568398
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -891,7 +850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8bf31864ff4984083a033351b12a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HexRenderer
-  isMainTile: 0
 --- !u!23 &1672675498
 MeshRenderer:
   m_ObjectHideFlags: 0
