@@ -7,7 +7,7 @@ using UnityEngine;
 public class ChunkSettings : ScriptableObject
 {
     public string label;
-    public List<TileGenerationRate> generationData;
+    public List<TileGenerationRate> tileGenerationData;
 
     private void Awake()
     {

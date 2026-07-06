@@ -1,21 +1,20 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ChunkGenerator : MonoBehaviour
 {
     [Header("Grid Settings")]
-    public Vector2Int gridSize;
+    [SerializeField] private Vector2Int _chunkSize = new Vector2Int(5,5);
+    public Vector2Int ChunkSize { get { return _chunkSize; } set { _chunkSize = value; } }
 
     [Header("Tile Settings")]
-    [SerializeField] private float outerSize = 1f;
-    [SerializeField] private float innerSize = 0f;
-    [SerializeField] private float height = 1f;
-    [SerializeField] private bool isFlatTopped;
-    [SerializeField] private float hexDistance = 0.01f;
-    [SerializeField] private Material mainMaterial;
-    [SerializeField] private Material borderMaterial;
-    [SerializeField] private ChunkSettings tileDataRates;
+    [SerializeField] private float _outerSize = 1f;
+    [SerializeField] private float _innerSize = 0f;
+    [SerializeField] private float _height = 1f;
+    [SerializeField] private bool _isFlatTopped;
+    [SerializeField] private float _hexDistance = 0.01f;
+    [SerializeField] private Material _mainMaterial;
+    [SerializeField] private Material _borderMaterial;
+    [SerializeField] private ChunkSettings _tileDataRates;
 
     private void OnEnable()
     {
@@ -41,9 +40,9 @@ public class ChunkGenerator : MonoBehaviour
     {
         ClearGrid();
 
-        for (int z = 0; z < gridSize.y; z++)
+        for (int z = 0; z < _chunkSize.y; z++)
         {
-            for (int x = 0; x < gridSize.x; x++)
+            for (int x = 0; x < _chunkSize.x; x++)
             {
                 GameObject hex = new GameObject($"Hex {z},{x}");
                 GameObject tile = new GameObject("Tile", typeof(HexTileRenderer));
@@ -53,11 +52,11 @@ public class ChunkGenerator : MonoBehaviour
                 HexTileRenderer borderRenderer = border.GetComponent<HexTileRenderer>();
 
                 hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, z));
-                border.transform.position = new Vector3(0, height, 0);
+                border.transform.position = new Vector3(0, _height, 0);
                 
-                tileRenderer.SetTileDataRates(tileDataRates);
-                tileRenderer.SetupHexComponents(outerSize, innerSize, height, mainMaterial, hexDistance, true, isFlatTopped);
-                borderRenderer.SetupHexComponents(outerSize, outerSize - outerSize / 10, .1f, borderMaterial, hexDistance, false, isFlatTopped);
+                tileRenderer.SetTileDataRates(_tileDataRates);
+                tileRenderer.SetupHexComponents(_outerSize, _innerSize, _height, _mainMaterial, _hexDistance, true, _isFlatTopped);
+                borderRenderer.SetupHexComponents(_outerSize, _outerSize - _outerSize / 10, .1f, _borderMaterial, _hexDistance, false, _isFlatTopped);
 
                 tile.transform.SetParent(hex.transform, false);
                 border.transform.SetParent(hex.transform, false);
@@ -78,9 +77,9 @@ public class ChunkGenerator : MonoBehaviour
         float horizontalDistance;
         float verticalDistance;
         float offset;
-        float size = outerSize + hexDistance;
+        float size = _outerSize + _hexDistance;
 
-        if (!isFlatTopped)
+        if (!_isFlatTopped)
         {
             shouldOffset = (row % 2) == 0;
             width = Mathf.Sqrt(3) * size;

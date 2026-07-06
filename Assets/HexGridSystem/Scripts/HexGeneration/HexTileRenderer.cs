@@ -65,7 +65,7 @@ public class HexTileRenderer : MonoBehaviour
         _mesh = new Mesh();
         _mesh.name = "Hex";
 
-        _meshFilter.mesh = _mesh;
+        _meshFilter.sharedMesh = _mesh;
         _meshRenderer.material = material;
     }
 
@@ -81,7 +81,7 @@ public class HexTileRenderer : MonoBehaviour
     public void SetMaterial(Material material)
     {
         _meshRenderer.material = material;
-        if (IsMainTile && chunkSettings.generationData.Count > 0)
+        if (IsMainTile && chunkSettings.tileGenerationData.Count > 0)
         {
             Color color = GetGenTileData().color;
             MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
@@ -183,9 +183,9 @@ public class HexTileRenderer : MonoBehaviour
     }
     private TileDataSettings GetGenTileData()
     {
-        List<TileGenerationRate> generationData = chunkSettings.generationData;
+        List<TileGenerationRate> generationData = chunkSettings.tileGenerationData;
 
-        if (chunkSettings.generationData.Count <= 0)
+        if (chunkSettings.tileGenerationData.Count <= 0)
         {
             Debug.LogWarning("No tiles data available");
             return null;

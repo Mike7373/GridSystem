@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: DesertChunk
   m_EditorClassIdentifier: Assembly-CSharp::ChunkSettings
   label: DesertChunk
-  generationData:
+  tileGenerationData:
   - tileData: {fileID: 11400000, guid: bd966d058589a72478581daa83337726, type: 2}
-    spawnWeigth: 75
-  - tileData: {fileID: 11400000, guid: aed199f69174ee848bdd9b68a66986fe, type: 2}
-    spawnWeigth: 10
+    spawnWeigth: 90
   - tileData: {fileID: 11400000, guid: 9e5eae5c5081e784d9fd07c8a6c95b90, type: 2}
-    spawnWeigth: 15
+    spawnWeigth: 10

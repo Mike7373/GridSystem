@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d2a40e73f765646a116ceb5e3a625d, type: 3}
   m_Name: OceanChunk
   m_EditorClassIdentifier: Assembly-CSharp::ChunkSettings
-  label: OceanData
-  generationData: []
+  label: OceanChunk
+  tileGenerationData:
+  - tileData: {fileID: 11400000, guid: aed199f69174ee848bdd9b68a66986fe, type: 2}
+    spawnWeigth: 1

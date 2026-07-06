@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d2a40e73f765646a116ceb5e3a625d, type: 3}
   m_Name: PlainChunk
   m_EditorClassIdentifier: Assembly-CSharp::ChunkSettings
-  label: OceanData
-  generationData: []
+  label: PlainChunk
+  tileGenerationData:
+  - tileData: {fileID: 11400000, guid: a6eae7c8a3b3882409f9f9f2a67c654c, type: 2}
+    spawnWeigth: 75
+  - tileData: {fileID: 11400000, guid: aed199f69174ee848bdd9b68a66986fe, type: 2}
+    spawnWeigth: 15
+  - tileData: {fileID: 11400000, guid: 79f8786c516e1bd44938b8bbb6653d47, type: 2}
+    spawnWeigth: 10

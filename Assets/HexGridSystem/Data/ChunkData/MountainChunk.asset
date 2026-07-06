@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d2a40e73f765646a116ceb5e3a625d, type: 3}
   m_Name: MountainChunk
   m_EditorClassIdentifier: Assembly-CSharp::ChunkSettings
-  label: OceanData
-  generationData: []
+  label: MountainChunk
+  tileGenerationData:
+  - tileData: {fileID: 11400000, guid: 9e5eae5c5081e784d9fd07c8a6c95b90, type: 2}
+    spawnWeigth: 50
+  - tileData: {fileID: 11400000, guid: 79f8786c516e1bd44938b8bbb6653d47, type: 2}
+    spawnWeigth: 30
+  - tileData: {fileID: 11400000, guid: a6eae7c8a3b3882409f9f9f2a67c654c, type: 2}
+    spawnWeigth: 10
