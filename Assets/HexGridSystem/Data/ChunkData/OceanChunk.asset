@@ -15,4 +15,4 @@ MonoBehaviour:
   label: OceanChunk
   tileGenerationData:
   - tileData: {fileID: 11400000, guid: aed199f69174ee848bdd9b68a66986fe, type: 2}
-    spawnWeigth: 1
+    spawnWeight: 100

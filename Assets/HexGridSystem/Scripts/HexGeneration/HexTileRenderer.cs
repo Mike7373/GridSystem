@@ -16,12 +16,8 @@ public class HexTileRenderer : MonoBehaviour
 
     private List<Face> _faces;
 
-    private Material material;
-    private float innerSize = 1;
-    private float outerSize = 1;
-    private float height = 1;
-    private bool isFlatTopped;
-    private ChunkSettings chunkSettings;
+    private Material _material;
+    private TileDataSettings tileDataSettings;
 
     #region Unity Functions
     private void Awake()
@@ -66,7 +62,7 @@ public class HexTileRenderer : MonoBehaviour
         _mesh.name = "Hex";
 
         _meshFilter.sharedMesh = _mesh;
-        _meshRenderer.material = material;
+        _meshRenderer.material = _material;
     }
 
     #region Mesh Rendering Functions
@@ -81,9 +77,9 @@ public class HexTileRenderer : MonoBehaviour
     public void SetMaterial(Material material)
     {
         _meshRenderer.material = material;
-        if (IsMainTile && chunkSettings.tileGenerationData.Count > 0)
+        if (IsMainTile && tileDataSettings != null)
         {
-            Color color = GetGenTileData().color;
+            Color color = tileDataSettings.color;
             MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
             propertyBlock.SetColor("_BaseColor", color);
             _meshRenderer.SetPropertyBlock(propertyBlock);
@@ -96,25 +92,25 @@ public class HexTileRenderer : MonoBehaviour
         //Top face
         for (int point = 0; point < 6; point++)
         {
-            _faces.Add(CreateFace(innerSize, outerSize, height / 2f, height / 2f, point));
+            _faces.Add(CreateFace(MapGenerator.TileInnerSize, MapGenerator.TileOuterSize, MapGenerator.TileHeight / 2f, MapGenerator.TileHeight / 2f, point));
         }
 
         //Bottom face
         for (int point = 0; point < 6; point++)
         {
-            _faces.Add(CreateFace(innerSize, outerSize, -height / 2f, -height / 2f, point, true));
+            _faces.Add(CreateFace(MapGenerator.TileInnerSize, MapGenerator.TileOuterSize, -MapGenerator.TileHeight / 2f, -MapGenerator.TileHeight / 2f, point, true));
         }
 
         //Outer face
         for (int point = 0; point < 6; point++)
         {
-            _faces.Add(CreateFace(outerSize, outerSize, height / 2f, -height / 2f, point, true));
+            _faces.Add(CreateFace(MapGenerator.TileOuterSize, MapGenerator.TileOuterSize, MapGenerator.TileHeight / 2f, -MapGenerator.TileHeight / 2f, point, true));
         }
 
         //Inner face
         for (int point = 0; point < 6; point++)
         {
-            _faces.Add(CreateFace(innerSize, innerSize, height / 2f, -height / 2f, point, false));
+            _faces.Add(CreateFace(MapGenerator.TileInnerSize, MapGenerator.TileInnerSize, MapGenerator.TileHeight / 2f, -MapGenerator.TileHeight / 2f, point, false));
         }
     }
 
@@ -169,7 +165,7 @@ public class HexTileRenderer : MonoBehaviour
 
     private Vector3 GetPoint(float size, float height, int index)
     {
-        float angleDeg = isFlatTopped ? 60 * index : 60 * index - 30;
+        float angleDeg = MapGenerator.IsTileTopFlat ? 60 * index : 60 * index - 30;
         float angleRad = Mathf.PI / 180 * angleDeg;
 
         return new Vector3(size * Mathf.Cos(angleRad), height, size * Mathf.Sin(angleRad));
@@ -177,63 +173,19 @@ public class HexTileRenderer : MonoBehaviour
     #endregion
 
     #region Data Funtions
-    public void SetTileDataRates(ChunkSettings settings)
+    public void SetTileDataSettings(TileDataSettings settings)
     {
-        chunkSettings = settings;
-    }
-    private TileDataSettings GetGenTileData()
-    {
-        List<TileGenerationRate> generationData = chunkSettings.tileGenerationData;
-
-        if (chunkSettings.tileGenerationData.Count <= 0)
-        {
-            Debug.LogWarning("No tiles data available");
-            return null;
-        }
-
-        int percSum = 0;
-        int rand;
-        List<TileGenerationRate> tiles = new List<TileGenerationRate>();
-        TileDataSettings result = null;
-
-        for (int i = 0; i < generationData.Count; i++)
-        {
-            tiles.Add(generationData[i]);
-            percSum += generationData[i].spawnWeigth;
-        }
-
-        rand = UnityEngine.Random.Range(0, percSum);
-
-        for (int i = 0, minRate = 0; i < tiles.Count; i++)
-        {
-            int maxRate = minRate + tiles[i].spawnWeigth;
-            //Debug.Log($"[HexRenderer/GetGenTileData] Rand: {rand} | MinRate: {minRate} | MaxRate: {maxRate} | PercSum: {percSum}");
-
-            if (rand >= minRate && rand < maxRate)
-            {
-                result = tiles[i].tileData;
-                break;
-            }
-            minRate = maxRate;
-        }
-        if (result == null)
-        {
-            Debug.LogError($"[HexGridLayout/GetGenTileData] Result is null!");
-        }
-        return result;
+        tileDataSettings = settings;
     }
 
     public void SetupHexComponents(float outerSize, float innerSize, float height,
                                     Material material, float hexDistance, bool isMainTile, bool isFlatTopped)
     {
-        this.isFlatTopped = isFlatTopped;
-        this.outerSize = outerSize;
-        this.innerSize = innerSize;
-        this.height = height;
-        this.IsMainTile = isMainTile;
+        IsMainTile = isMainTile;
         SetMaterial(material);
         DrawMesh();
-        this.outerSize = hexDistance;
+        //HEX TILE DELTA DISTANCE (CTRL + SHIFT + F) ==> start finding a solution from here if there are generation problems
+        //this._outerSize = hexDistance;
     }
 
     #endregion

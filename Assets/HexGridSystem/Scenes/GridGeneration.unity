@@ -148,14 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9991f73c977fa75408c7e5c7dff7e79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChunkGenerator
-  _outerSize: 1
-  _innerSize: 0
-  _height: 1
-  _isFlatTopped: 0
-  _hexDistance: 0.01
-  _mainMaterial: {fileID: 0}
-  _borderMaterial: {fileID: 0}
-  _tileDataRates: {fileID: 0}
+  _chunkSettings: {fileID: 0}
 --- !u!4 &7989358
 Transform:
   m_ObjectHideFlags: 0
@@ -451,7 +444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &479638040
 Transform:
   m_ObjectHideFlags: 0
@@ -474,24 +467,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479638039}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cebe945c787bb7e468eb17ced2071920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapGenerator
-  mapSize: {x: 10, y: 10}
-  chunkSize: {x: 10, y: 10}
+  _mapSize: {x: 5, y: 5}
+  _chunkSize: {x: 12, y: 12}
   chunkGenerationData:
-  - chunkData: {fileID: 11400000, guid: 5acdc6e5da498f34c9ac4e4c074f1589, type: 2}
-    spawnWeight: 40
-  - chunkData: {fileID: 11400000, guid: e3f54b3a87e649d43806d5a80c58abbf, type: 2}
-    spawnWeight: 20
   - chunkData: {fileID: 11400000, guid: bc84c19f97975bc4eadf756212eaf59f, type: 2}
     spawnWeight: 10
   - chunkData: {fileID: 11400000, guid: e16ade8c12d6f5c49bc30607bc5e6d17, type: 2}
     spawnWeight: 10
-  - chunkData: {fileID: 11400000, guid: 4fa4e727da96cd9489bcdb9cca62793f, type: 2}
-    spawnWeight: 40
+  _isTileTopFlat: 1
+  _tileOuterSize: 1
+  _tileInnerSize: 0
+  _tileDeltaDistance: 0.01
+  _tileHeight: 0.1
+  _tilemainMaterial: {fileID: 2100000, guid: 26985202e5071de458996bb44b738d30, type: 2}
+  _tileBorderMaterial: {fileID: 2100000, guid: 784a8f71bc6b02c42a185ace79b180f0, type: 2}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,14 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9991f73c977fa75408c7e5c7dff7e79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChunkGenerator
-  _outerSize: 1
-  _innerSize: 0
-  _height: 1
-  _isFlatTopped: 0
-  _hexDistance: 0.01
-  _mainMaterial: {fileID: 0}
-  _borderMaterial: {fileID: 0}
-  _tileDataRates: {fileID: 0}
+  _chunkSettings: {fileID: 0}
 --- !u!4 &973550376
 Transform:
   m_ObjectHideFlags: 0
@@ -622,14 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9991f73c977fa75408c7e5c7dff7e79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChunkGenerator
-  _outerSize: 1
-  _innerSize: 0
-  _height: 1
-  _isFlatTopped: 0
-  _hexDistance: 0.01
-  _mainMaterial: {fileID: 0}
-  _borderMaterial: {fileID: 0}
-  _tileDataRates: {fileID: 0}
+  _chunkSettings: {fileID: 0}
 --- !u!4 &1126936439
 Transform:
   m_ObjectHideFlags: 0
@@ -694,7 +674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1551205334
 Transform:
   m_ObjectHideFlags: 0
@@ -717,19 +697,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551205333}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9991f73c977fa75408c7e5c7dff7e79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChunkGenerator
-  _outerSize: 1
-  _innerSize: 0
-  _height: 0.1
-  _isFlatTopped: 0
-  _hexDistance: 0.01
-  _mainMaterial: {fileID: 2100000, guid: 26985202e5071de458996bb44b738d30, type: 2}
-  _borderMaterial: {fileID: 2100000, guid: 784a8f71bc6b02c42a185ace79b180f0, type: 2}
-  _tileDataRates: {fileID: 11400000, guid: 4fa4e727da96cd9489bcdb9cca62793f, type: 2}
+  _chunkSettings: {fileID: 0}
 --- !u!1 &1591568396
 GameObject:
   m_ObjectHideFlags: 0

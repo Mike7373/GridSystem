@@ -15,6 +15,6 @@ MonoBehaviour:
   label: DesertChunk
   tileGenerationData:
   - tileData: {fileID: 11400000, guid: bd966d058589a72478581daa83337726, type: 2}
-    spawnWeigth: 90
+    spawnWeight: 90
   - tileData: {fileID: 11400000, guid: 9e5eae5c5081e784d9fd07c8a6c95b90, type: 2}
-    spawnWeigth: 10
+    spawnWeight: 10

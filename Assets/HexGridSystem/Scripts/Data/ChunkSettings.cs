@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +17,6 @@ public class ChunkSettings : ScriptableObject
     public struct TileGenerationRate
     {
         public TileDataSettings tileData;
-        [Min(0)] public int spawnWeigth;
+        [Min(0)] public int spawnWeight;
     }
 }
