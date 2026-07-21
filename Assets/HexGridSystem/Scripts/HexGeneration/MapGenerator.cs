@@ -121,14 +121,20 @@ public class MapGenerator : MonoBehaviour
         }
         else
         {
-            shouldOffset = (column % 2) == 0 && (_mapSize.y % 2) == 0;
+            shouldOffset = false;
+            if (_chunkSize.x % 2 != 0)
+            {
+                shouldOffset = (column % 2) == 0;
+            }
+            Debug.Log($"[MapGenerator/GetPositionForChunkFromCoordinate] shouldOffest : {shouldOffset}");
             width = 2f * size * _chunkSize.x;
             height = Mathf.Sqrt(3) * size * _chunkSize.y;
 
-            horizontalDistance = width * (3f / 4f);
+            horizontalDistance = width * 0.75f;
             verticalDistance = height;
 
-            offset = shouldOffset ? (height + _chunkSize.y * Mathf.Sqrt(3)) / 2 : 0;
+            offset = shouldOffset ? height / _chunkSize.y / 2 : 0f;
+
             xPosition = column * horizontalDistance;
             zPosition = row * verticalDistance - offset;
         }
