@@ -16,6 +16,8 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Vector2Int _chunkSize;
     [SerializeField] private List<ChunkGenerationRate> chunkGenerationData;
     [Header("Tile Generation Settings")]
+    [SerializeField] private GameObject _tilePrefab;
+    [SerializeField] private GameObject _tileBorderPrefab;
     [SerializeField] private bool _isTileTopFlat = true;
     [SerializeField] private float _tileOuterSize = 1f;
     [SerializeField] private float _tileInnerSize = 0f;
