@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static ChunkSettings;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshCollider))]
-public class HexTileRenderer : MonoBehaviour
+public class YT_HexTileRenderer : MonoBehaviour
 {
     private Mesh _mesh;
     private MeshFilter _meshFilter;
@@ -92,25 +91,25 @@ public class HexTileRenderer : MonoBehaviour
         //Top face
         for (int point = 0; point < 6; point++)
         {
-            _faces.Add(CreateFace(MapGenerator.TileInnerSize, MapGenerator.TileOuterSize, MapGenerator.TileHeight / 2f, MapGenerator.TileHeight / 2f, point));
+            _faces.Add(CreateFace(YT_MapGenerator.TileInnerSize, YT_MapGenerator.TileOuterSize, YT_MapGenerator.TileHeight / 2f, YT_MapGenerator.TileHeight / 2f, point));
         }
 
         //Bottom face
         for (int point = 0; point < 6; point++)
         {
-            _faces.Add(CreateFace(MapGenerator.TileInnerSize, MapGenerator.TileOuterSize, -MapGenerator.TileHeight / 2f, -MapGenerator.TileHeight / 2f, point, true));
+            _faces.Add(CreateFace(YT_MapGenerator.TileInnerSize, YT_MapGenerator.TileOuterSize, -YT_MapGenerator.TileHeight / 2f, -YT_MapGenerator.TileHeight / 2f, point, true));
         }
 
         //Outer face
         for (int point = 0; point < 6; point++)
         {
-            _faces.Add(CreateFace(MapGenerator.TileOuterSize, MapGenerator.TileOuterSize, MapGenerator.TileHeight / 2f, -MapGenerator.TileHeight / 2f, point, true));
+            _faces.Add(CreateFace(YT_MapGenerator.TileOuterSize, YT_MapGenerator.TileOuterSize, YT_MapGenerator.TileHeight / 2f, -YT_MapGenerator.TileHeight / 2f, point, true));
         }
 
         //Inner face
         for (int point = 0; point < 6; point++)
         {
-            _faces.Add(CreateFace(MapGenerator.TileInnerSize, MapGenerator.TileInnerSize, MapGenerator.TileHeight / 2f, -MapGenerator.TileHeight / 2f, point, false));
+            _faces.Add(CreateFace(YT_MapGenerator.TileInnerSize, YT_MapGenerator.TileInnerSize, YT_MapGenerator.TileHeight / 2f, -YT_MapGenerator.TileHeight / 2f, point, false));
         }
     }
 
@@ -165,7 +164,7 @@ public class HexTileRenderer : MonoBehaviour
 
     private Vector3 GetPoint(float size, float height, int index)
     {
-        float angleDeg = MapGenerator.IsTileTopFlat ? 60 * index : 60 * index - 30;
+        float angleDeg = YT_MapGenerator.IsTileTopFlat ? 60 * index : 60 * index - 30;
         float angleRad = Mathf.PI / 180 * angleDeg;
 
         return new Vector3(size * Mathf.Cos(angleRad), height, size * Mathf.Sin(angleRad));

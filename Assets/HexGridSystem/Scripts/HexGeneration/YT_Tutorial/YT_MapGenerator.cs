@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapGenerator : MonoBehaviour
+public class YT_MapGenerator : MonoBehaviour
 {
     //Singleton
-    private static MapGenerator _instance;
-    public static MapGenerator Instance => _instance;
+    private static YT_MapGenerator _instance;
+    public static YT_MapGenerator Instance => _instance;
 
     #region Inspector Data
     [Header("Map Generation Settings")]
@@ -80,8 +80,8 @@ public class MapGenerator : MonoBehaviour
         {
             for (int x = 0; x < _mapSize.x; x++)
             {
-                GameObject chunk = new GameObject($"Chunk {z},{x}", typeof(ChunkGenerator));
-                ChunkGenerator chunkGenerator = chunk.GetComponent<ChunkGenerator>();
+                GameObject chunk = new GameObject($"Chunk {z},{x}", typeof(YT_ChunkGenerator));
+                YT_ChunkGenerator chunkGenerator = chunk.GetComponent<YT_ChunkGenerator>();
 
                 chunk.transform.position = GetPositionForChunkFromCoordinate(new Vector2Int(x, z));
                 chunkGenerator.SetMapSettings(GetGenChunkData());

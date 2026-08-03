@@ -3,17 +3,17 @@ using UnityEngine;
 [RequireComponent(typeof(MeshRenderer))]
 public class HexTileBody : MonoBehaviour
 {
-    private MeshRenderer _meshRenderer;
+    private MeshRenderer m_meshRenderer;
 
     private void Awake()
     {
-        _meshRenderer = GetComponent<MeshRenderer>();
+        m_meshRenderer = GetComponent<MeshRenderer>();
     }
 
     public void SetColor(Color color)
     {
         MaterialPropertyBlock block = new MaterialPropertyBlock();
         block.SetColor("_BaseColor", color);
-        _meshRenderer.SetPropertyBlock(block);
+        m_meshRenderer.SetPropertyBlock(block);
     }
 }

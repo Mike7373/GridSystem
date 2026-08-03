@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ChunkSettings;
 
-public class ChunkGenerator : MonoBehaviour
+public class YT_ChunkGenerator : MonoBehaviour
 {
     [Header("Grid Settings")]
     private Vector2Int _chunkSize;
@@ -14,7 +14,7 @@ public class ChunkGenerator : MonoBehaviour
 
     private void Awake()
     {
-        _chunkSize = MapGenerator.ChunkSize;   
+        _chunkSize = YT_MapGenerator.ChunkSize;   
     }
     private void OnValidate()
     {
@@ -52,18 +52,18 @@ public class ChunkGenerator : MonoBehaviour
             for (int x = 0; x < _chunkSize.x; x++)
             {
                 GameObject hex = new GameObject($"Hex {z},{x}");
-                GameObject tile = new GameObject("Tile", typeof(HexTileRenderer));
-                GameObject border = new GameObject("Border", typeof(HexTileRenderer));
+                GameObject tile = new GameObject("Tile", typeof(YT_HexTileRenderer));
+                GameObject border = new GameObject("Border", typeof(YT_HexTileRenderer));
 
-                HexTileRenderer tileRenderer = tile.GetComponent<HexTileRenderer>();
-                HexTileRenderer borderRenderer = border.GetComponent<HexTileRenderer>();
+                YT_HexTileRenderer tileRenderer = tile.GetComponent<YT_HexTileRenderer>();
+                YT_HexTileRenderer borderRenderer = border.GetComponent<YT_HexTileRenderer>();
 
                 hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, z));
-                border.transform.position = new Vector3(0, MapGenerator.TileHeight, 0);
+                border.transform.position = new Vector3(0, YT_MapGenerator.TileHeight, 0);
                 
                 tileRenderer.SetTileDataSettings(GetGenTileData());
-                tileRenderer.SetupHexComponents(MapGenerator.TileOuterSize, MapGenerator.TileInnerSize, MapGenerator.TileHeight, MapGenerator.TileMainMaterial, MapGenerator.TileDeltaDistance, true, MapGenerator.IsTileTopFlat);
-                borderRenderer.SetupHexComponents(MapGenerator.TileOuterSize, MapGenerator.TileOuterSize - MapGenerator.TileOuterSize / 10, .1f, MapGenerator.TileBorderMaterial, MapGenerator.TileDeltaDistance, false, MapGenerator.IsTileTopFlat);
+                tileRenderer.SetupHexComponents(YT_MapGenerator.TileOuterSize, YT_MapGenerator.TileInnerSize, YT_MapGenerator.TileHeight, YT_MapGenerator.TileMainMaterial, YT_MapGenerator.TileDeltaDistance, true, YT_MapGenerator.IsTileTopFlat);
+                borderRenderer.SetupHexComponents(YT_MapGenerator.TileOuterSize, YT_MapGenerator.TileOuterSize - YT_MapGenerator.TileOuterSize / 10, .1f, YT_MapGenerator.TileBorderMaterial, YT_MapGenerator.TileDeltaDistance, false, YT_MapGenerator.IsTileTopFlat);
 
                 tile.transform.SetParent(hex.transform, false);
                 border.transform.SetParent(hex.transform, false);
@@ -84,9 +84,9 @@ public class ChunkGenerator : MonoBehaviour
         float horizontalDistance;
         float verticalDistance;
         float offset;
-        float size = MapGenerator.TileOuterSize + MapGenerator.TileDeltaDistance;
+        float size = YT_MapGenerator.TileOuterSize + YT_MapGenerator.TileDeltaDistance;
 
-        if (!MapGenerator.IsTileTopFlat)
+        if (!YT_MapGenerator.IsTileTopFlat)
         {
             shouldOffset = (row % 2) == 0;
             width = Mathf.Sqrt(3) * size;

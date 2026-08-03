@@ -4,8 +4,8 @@ using UnityEngine;
 public class HexTileBorder : MonoBehaviour
 {
     [Header("Border Style Settings")]
-    [SerializeField] private Color _hoverColor = Color.white;
-    [SerializeField] private Color _selectColor = Color.yellow;
+    [SerializeField] private Color m_hoverColor = Color.white;
+    [SerializeField] private Color m_selectColor = Color.yellow;
 
     private MeshRenderer _meshRenderer;
 
@@ -26,14 +26,14 @@ public class HexTileBorder : MonoBehaviour
     public void Hover()
     {
         MaterialPropertyBlock block = new MaterialPropertyBlock();
-        block.SetColor("_BaseColor", _hoverColor);
+        block.SetColor("_BaseColor", m_hoverColor);
         _meshRenderer.SetPropertyBlock(block);
     }
 
     public void Select()
     {
         MaterialPropertyBlock block = new MaterialPropertyBlock();
-        block.SetColor("_BaseColor", _selectColor);
+        block.SetColor("_BaseColor", m_selectColor);
         _meshRenderer.SetPropertyBlock(block);
     }
     public void Hide()
