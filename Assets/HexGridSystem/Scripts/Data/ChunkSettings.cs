@@ -16,7 +16,7 @@ public class ChunkSettings : ScriptableObject
     [Serializable]
     public struct TileGenerationRate
     {
-        public TileDataSettings tileData;
+        public TileSettings tileData;
         [Min(0)] public int spawnWeight;
     }
 }

@@ -16,7 +16,7 @@ public class YT_HexTileRenderer : MonoBehaviour
     private List<Face> _faces;
 
     private Material _material;
-    private TileDataSettings tileDataSettings;
+    private TileSettings tileDataSettings;
 
     #region Unity Functions
     private void Awake()
@@ -172,7 +172,7 @@ public class YT_HexTileRenderer : MonoBehaviour
     #endregion
 
     #region Data Funtions
-    public void SetTileDataSettings(TileDataSettings settings)
+    public void SetTileDataSettings(TileSettings settings)
     {
         tileDataSettings = settings;
     }

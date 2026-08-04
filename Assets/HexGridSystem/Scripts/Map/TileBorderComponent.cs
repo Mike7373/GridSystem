@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
-public class HexTileBorder : MonoBehaviour
+public class TileBorderComponent : MonoBehaviour
 {
     [Header("Border Style Settings")]
     [SerializeField] private Color m_hoverColor = Color.white;

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
-public class HexTileBody : MonoBehaviour
+public class TileBodyComponent : MonoBehaviour
 {
     private MeshRenderer m_meshRenderer;
 

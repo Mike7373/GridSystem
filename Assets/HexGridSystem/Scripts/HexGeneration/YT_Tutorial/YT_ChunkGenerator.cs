@@ -61,7 +61,8 @@ public class YT_ChunkGenerator : MonoBehaviour
                 hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, z));
                 border.transform.position = new Vector3(0, YT_MapGenerator.TileHeight, 0);
                 
-                tileRenderer.SetTileDataSettings(GetGenTileData());
+                //TODO: decommentare e sistemare
+                //tileRenderer.SetTileDataSettings(GetGenTileData());
                 tileRenderer.SetupHexComponents(YT_MapGenerator.TileOuterSize, YT_MapGenerator.TileInnerSize, YT_MapGenerator.TileHeight, YT_MapGenerator.TileMainMaterial, YT_MapGenerator.TileDeltaDistance, true, YT_MapGenerator.IsTileTopFlat);
                 borderRenderer.SetupHexComponents(YT_MapGenerator.TileOuterSize, YT_MapGenerator.TileOuterSize - YT_MapGenerator.TileOuterSize / 10, .1f, YT_MapGenerator.TileBorderMaterial, YT_MapGenerator.TileDeltaDistance, false, YT_MapGenerator.IsTileTopFlat);
 
@@ -122,45 +123,45 @@ public class YT_ChunkGenerator : MonoBehaviour
     {
         _chunkSettings = settings;
     }
-    private TileDataSettings GetGenTileData()
-    {
-        List<TileGenerationRate> generationData = _chunkSettings.tileGenerationData;
+    //private TileSettings GetGenTileData()
+    //{
+    //    List<TileGenerationRate> generationData = _chunkSettings.tileGenerationData;
 
-        if (_chunkSettings.tileGenerationData.Count <= 0)
-        {
-            Debug.LogWarning("[ChunkGenerator/GetGenTileData] No tiles data available!");
-            return null;
-        }
+    //    if (_chunkSettings.tileGenerationData.Count <= 0)
+    //    {
+    //        Debug.LogWarning("[ChunkGenerator/GetGenTileData] No tiles data available!");
+    //        return null;
+    //    }
 
-        int percSum = 0;
-        int rand;
-        List<TileGenerationRate> tiles = new List<TileGenerationRate>();
-        TileDataSettings result = null;
+    //    int percSum = 0;
+    //    int rand;
+    //    List<TileGenerationRate> tiles = new List<TileGenerationRate>();
+    //    TileSettings result = null;
 
-        for (int i = 0; i < generationData.Count; i++)
-        {
-            tiles.Add(generationData[i]);
-            percSum += generationData[i].spawnWeight;
-        }
+    //    for (int i = 0; i < generationData.Count; i++)
+    //    {
+    //        tiles.Add(generationData[i]);
+    //        percSum += generationData[i].spawnWeight;
+    //    }
 
-        rand = Random.Range(0, percSum);
+    //    rand = Random.Range(0, percSum);
 
-        for (int i = 0, minRate = 0; i < tiles.Count; i++)
-        {
-            int maxRate = minRate + tiles[i].spawnWeight;
-            //Debug.Log($"[ChunkGenerator/GetGenTileData] Rand: {rand} | MinRate: {minRate} | MaxRate: {maxRate} | PercSum: {percSum}");
+    //    for (int i = 0, minRate = 0; i < tiles.Count; i++)
+    //    {
+    //        int maxRate = minRate + tiles[i].spawnWeight;
+    //        //Debug.Log($"[ChunkGenerator/GetGenTileData] Rand: {rand} | MinRate: {minRate} | MaxRate: {maxRate} | PercSum: {percSum}");
 
-            if (rand >= minRate && rand < maxRate)
-            {
-                result = tiles[i].tileData;
-                break;
-            }
-            minRate = maxRate;
-        }
-        if (result == null)
-        {
-            Debug.LogError($"[ChunkGenerator/GetGenTileData] Result is null!");
-        }
-        return result;
-    }
+    //        if (rand >= minRate && rand < maxRate)
+    //        {
+    //            //result = tiles[i].tileData;
+    //            break;
+    //        }
+    //        minRate = maxRate;
+    //    }
+    //    if (result == null)
+    //    {
+    //        Debug.LogError($"[ChunkGenerator/GetGenTileData] Result is null!");
+    //    }
+    //    return result;
+    //}
 }
