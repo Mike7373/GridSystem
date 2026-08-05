@@ -9,6 +9,7 @@ public class Map
     private Vector2Int m_mapSize;
 
     public Vector2Int mapSize => m_mapSize;
+    public Dictionary<Vector2Int, int> grid => m_grid;
 
     public Map(Vector2Int mapSize, List<TileGenerationRate> generationRates)
     {
@@ -21,12 +22,12 @@ public class Map
             for (int x = 0; x < mapSize.x; x++)
             {
                 Debug.Log($"[Map] Generating tile at position [{y}][{x}]");
-                m_grid.Add(new Vector2Int(x, y), new Tile(GetTileSettings(x, y)).id);
+                m_grid.Add(new Vector2Int(x, y), new Tile(NewTileSettings(x, y)).id);
             }
         }
     }
 
-    private TileSettings GetTileSettings(int xPos, int yPos)
+    private TileSettings NewTileSettings(int xPos, int yPos)
     {
         if (m_generationRates.Count <= 0)
         {
