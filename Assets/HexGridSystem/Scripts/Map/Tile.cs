@@ -1,19 +1,26 @@
-using UnityEngine.Rendering.Universal;
+using System.Collections.Generic;
 
 public class Tile
 {
-    private int xPos;
-    private int yPos;
-    private TileSettings settings;
+    private int m_id;
+    private TileSettings m_settings;
 
-    public int x { get => xPos; }
-    public int y { get => yPos; }
-    public TileSettings Settings { get => settings; }
+    private static List<Tile> s_instances = new();
+    private static int s_instanceCount;
 
-    public Tile(int xPos, int yPos, TileSettings settings)
+    public int id => m_id;
+    public TileSettings Settings { get => m_settings; }
+
+    public Tile(TileSettings settings)
     {
-        this.xPos = xPos;
-        this.yPos = yPos;
-        this.settings = settings;
+        m_settings = settings;
+
+        m_id = s_instanceCount++;
+        s_instances.Add(this);
+    }
+
+    public Tile GetTileById(int id)
+    {
+        return s_instances.Find(x => x.m_id == id);
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TileDataSettings", menuName = "Map Generation/Tile Data Settings")]
 public class TileSettings : ScriptableObject
 {
-    public TileType tileType;
+    public TileType type;
     public Color color;
     public GameObject defaultPrefab;
 }
