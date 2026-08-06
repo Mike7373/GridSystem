@@ -2,21 +2,15 @@ using UnityEngine;
 
 public class TileComponent : MonoBehaviour
 {
-    private TileSettings m_tileDataSettings;
     private TileBodyComponent m_tileBody;
     private TileBorderComponent m_tileBorder;
 
-    private void Start()
-    {
-        InitializeComponents();
-    }
-    private void InitializeComponents()
+    public void Initialize(Color color)
     {
         m_tileBody = GetComponentInChildren<TileBodyComponent>();
         m_tileBorder = GetComponentInChildren<TileBorderComponent>();
+        m_tileBody.SetColor(color);
     }
-    public void SetDataSettings(TileSettings settings)
-    {
-        m_tileDataSettings = settings;
-    }
+
+
 }

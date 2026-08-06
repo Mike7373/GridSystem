@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +5,11 @@ using UnityEngine;
 public class MapSettings : ScriptableObject
 {
     [Header("Map Generation Settings")]
-    public Vector2Int mapSize;
-    public List<TileGenerationRate> tileGenerationRate;
-    public string seed;
+    public Vector2Int size;
+    [Range(0,100)]public float seed;
+    [Range(0,10)]public float scale;
     [Header("Tile Generation Settings")]
+    public List<TileGenerationRate> tileGenerationRate;
     public GameObject tilePrefab;
     public bool isTileTopFlat = true;
 }

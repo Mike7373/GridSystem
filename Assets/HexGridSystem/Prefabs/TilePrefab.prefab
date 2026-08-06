@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1635508207198398646
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      propertyPath: m_Name
+      value: TilePrefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3871014069950815106}
+    - targetCorrespondingSourceObject: {fileID: -6009980120910470233, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5971366311081801750}
+    - targetCorrespondingSourceObject: {fileID: 76778568672962963, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4733025154253048943}
+  m_SourcePrefab: {fileID: 100100000, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+--- !u!1 &1703130038202171685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 76778568672962963, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+  m_PrefabInstance: {fileID: 1635508207198398646}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4733025154253048943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703130038202171685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb06121bfe42cd04cafba44f77379300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileBorderComponent
+  m_hoverColor: {r: 1, g: 1, b: 1, a: 1}
+  m_selectColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+--- !u!1 &1905893307163530727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+  m_PrefabInstance: {fileID: 1635508207198398646}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3871014069950815106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905893307163530727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8bf31864ff4984083a033351b12a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileComponent
+--- !u!1 &4191229338352552721 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6009980120910470233, guid: 5d7d5ee28e8055c448c066fccbc74588, type: 3}
+  m_PrefabInstance: {fileID: 1635508207198398646}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5971366311081801750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4191229338352552721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8567e4a40d5033a44b42fb3da850f5e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileBodyComponent

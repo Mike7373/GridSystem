@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5c68c14722b134b86211dfa4a1ddf5, type: 3}
+  m_Name: Default
+  m_EditorClassIdentifier: Assembly-CSharp::MapSettings
+  size: {x: 50, y: 50}
+  seed: 48
+  scale: 0.3
+  tileGenerationRate:
+  - settings: {fileID: 11400000, guid: b6fab889c6c04354ebfc7fb70f3e20be, type: 2}
+    spawnWeight: 55
+  - settings: {fileID: 11400000, guid: 65e601e83b8f29e47945b2b8c47cfdd8, type: 2}
+    spawnWeight: 94
+  - settings: {fileID: 11400000, guid: eb9c6f2aa70f6d94ca5088da0b0acd10, type: 2}
+    spawnWeight: 27
+  tilePrefab: {fileID: 1905893307163530727, guid: cee4f02a24dc9d9438c1e857272c1fd7, type: 3}
+  isTileTopFlat: 1

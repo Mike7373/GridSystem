@@ -4,19 +4,22 @@ using UnityEngine;
 public class Map
 {
     private Dictionary<Vector2Int, int> m_grid;
-    private List<TileGenerationRate> m_generationRates = new();
-    private int m_seed;
     private Vector2Int m_mapSize;
+    private List<TileGenerationRate> m_generationRates = new();
+    private float m_seed;
+    private float m_scale;
 
     public Vector2Int mapSize => m_mapSize;
     public Dictionary<Vector2Int, int> grid => m_grid;
 
-    public Map(Vector2Int mapSize, List<TileGenerationRate> generationRates)
+    public Map(MapSettings settings)
     {
         m_grid = new Dictionary<Vector2Int, int>();
-        m_generationRates = generationRates;
-        m_seed = Random.Range(0, int.MaxValue);
-        m_mapSize = mapSize;
+        m_mapSize = settings.size;  
+        m_generationRates = settings.tileGenerationRate;
+        m_seed = settings.seed;
+        m_scale = settings.scale;
+
         for (int y = 0; y < mapSize.y; y++)
         {
             for (int x = 0; x < mapSize.x; x++)
@@ -35,21 +38,27 @@ public class Map
             return null;
         }
 
-        float value = Mathf.PerlinNoise(xPos + m_seed, yPos + m_seed);
-        int rateMax = 0;
+        float value;
+        float rateMax = 0f;
         TileSettings result = null;
 
         foreach (TileGenerationRate rate in m_generationRates)
         {
             rateMax += rate.spawnWeight;
         }
-        
+
+        float x = (xPos / (float)m_mapSize.x + m_seed) / m_scale;
+        float y = (yPos / (float)m_mapSize.y + m_seed) / m_scale;
+
+        value = Mathf.PerlinNoise(x, y);
+        Debug.Log($"[Map/GetTileSettings] Weight value: {value} | RateMax: {rateMax}");
         value *= rateMax;
 
-        for(int i = 0, minRate = 0; i < m_generationRates.Count; i++)
+        for (int i = 0, minRate = 0; i < m_generationRates.Count; i++)
         {
             int maxRate = minRate + m_generationRates[i].spawnWeight;
-            if(value >= minRate && value < maxRate)
+            Debug.Log($"[Map/GetTileSettings] MinRate: {minRate} | MaxRate: {maxRate}");
+            if (value >= minRate && value < maxRate)
             {
                 result = m_generationRates[i].settings;
                 break;
@@ -57,7 +66,7 @@ public class Map
             minRate = maxRate;
         }
 
-        Debug.Log($"[Map/GetTileSettings] Tile type selected: {result.type.ToString()}");
+        Debug.Log($"[Map/GetTileSettings] Tile type selected: {(result != null ? result.type.ToString() : "null")}");
         return result;
     }
 
