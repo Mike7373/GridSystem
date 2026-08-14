@@ -23,4 +23,4 @@ MonoBehaviour:
   - settings: {fileID: 11400000, guid: eb9c6f2aa70f6d94ca5088da0b0acd10, type: 2}
     spawnWeight: 47
   tilePrefab: {fileID: 1905893307163530727, guid: cee4f02a24dc9d9438c1e857272c1fd7, type: 3}
-  isTileTopFlat: 1
+  isTileTopFlat: 0

@@ -1,9 +1,14 @@
 using UnityEngine;
 
-[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(MeshRenderer),typeof(MeshCollider))]
 public class TileBodyComponent : MonoBehaviour
 {
     private MeshRenderer m_meshRenderer;
+    public delegate void MouseEvent();
+    
+    public event MouseEvent onClick;
+    public event MouseEvent onFocus;
+    public event MouseEvent onUnfocus;
 
     private void Awake()
     {
@@ -16,4 +21,18 @@ public class TileBodyComponent : MonoBehaviour
         block.SetColor("_BaseColor", color);
         m_meshRenderer.SetPropertyBlock(block);
     }
+    private void OnMouseDown()
+    {
+        onClick?.Invoke();
+    }
+    private void OnMouseEnter()
+    {
+        onFocus?.Invoke();
+    }
+    private void OnMouseExit()
+    {
+        onUnfocus?.Invoke();
+    }
+
+
 }

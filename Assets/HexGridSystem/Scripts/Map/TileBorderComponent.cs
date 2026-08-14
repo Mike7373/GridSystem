@@ -8,6 +8,7 @@ public class TileBorderComponent : MonoBehaviour
     [SerializeField] private Color m_selectColor = Color.yellow;
 
     private MeshRenderer _meshRenderer;
+    private static TileBorderComponent selectedTile;
 
     private void Awake()
     {
@@ -23,15 +24,27 @@ public class TileBorderComponent : MonoBehaviour
         Hide();
     }
 
-    public void Hover()
+    public void Focus()
     {
         MaterialPropertyBlock block = new MaterialPropertyBlock();
         block.SetColor("_BaseColor", m_hoverColor);
         _meshRenderer.SetPropertyBlock(block);
     }
 
+    public void TrySelect()
+    {
+        if (selectedTile != this)
+        {
+            Select();
+        }
+    }
     public void Select()
     {
+        if (selectedTile != null)
+        {
+            selectedTile.Hide();
+        }
+        selectedTile = this;
         MaterialPropertyBlock block = new MaterialPropertyBlock();
         block.SetColor("_BaseColor", m_selectColor);
         _meshRenderer.SetPropertyBlock(block);
@@ -41,5 +54,12 @@ public class TileBorderComponent : MonoBehaviour
         MaterialPropertyBlock block = new MaterialPropertyBlock();
         block.SetColor("_BaseColor", new Color(0, 0, 0, 0));
         _meshRenderer.SetPropertyBlock(block);
+    }
+    public void TryHide()
+    {
+        if (selectedTile != this)
+        {
+            Hide();
+        }
     }
 }

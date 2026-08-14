@@ -41,7 +41,11 @@ public class MapGenerator : MonoBehaviour
 
                 tileObj.name = $"[{x},{x}] {tile.type} tile";
                 tileObj.transform.position = tileTransformPosition;
-                tileComponent.Initialize(tile.color, tileTransformPosition);
+                if (m_mapSettings.isTileTopFlat)
+                {
+                    tileObj.transform.Rotate(new Vector3(0, 30, 0));
+                }
+                tileComponent.Initialize(tile.color, tileTransformPosition, tile.id);
 
                 if (m_parent != null)
                     tileObj.transform.SetParent(m_parent);
@@ -64,7 +68,7 @@ public class MapGenerator : MonoBehaviour
         float offset;
         float size = 1.01f; //Switch with magic number
 
-        if (m_mapSettings.isTileTopFlat)
+        if (!m_mapSettings.isTileTopFlat)
         {
             shouldOffset = (row % 2) == 0;
             width = Mathf.Sqrt(3) * size;
