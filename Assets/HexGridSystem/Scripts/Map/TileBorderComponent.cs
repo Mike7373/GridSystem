@@ -24,6 +24,13 @@ public class TileBorderComponent : MonoBehaviour
         Hide();
     }
 
+    public void TryFocus()
+    {
+        if(selectedTile != this)
+        {
+            Focus();
+        }
+    }
     public void Focus()
     {
         MaterialPropertyBlock block = new MaterialPropertyBlock();

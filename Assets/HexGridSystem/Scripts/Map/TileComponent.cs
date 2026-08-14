@@ -16,8 +16,8 @@ public class TileComponent : MonoBehaviour
         {
             m_tileBody.onClick += ShowTileData;
             m_tileBody.onClick += m_tileBorder.TrySelect;
-            m_tileBody.onFocus += m_tileBorder.Focus;
-            m_tileBody.onUnfocus += m_tileBorder.Hide;
+            m_tileBody.onFocus += m_tileBorder.TryFocus;
+            m_tileBody.onUnfocus += m_tileBorder.TryHide;
         }
     }
     private void OnDisable()
@@ -26,8 +26,8 @@ public class TileComponent : MonoBehaviour
         {
             m_tileBody.onClick -= ShowTileData;
             m_tileBody.onClick -= m_tileBorder.TrySelect;
-            m_tileBody.onFocus -= m_tileBorder.Focus;
-            m_tileBody.onUnfocus -= m_tileBorder.Hide;
+            m_tileBody.onFocus -= m_tileBorder.TryFocus;
+            m_tileBody.onUnfocus -= m_tileBorder.TryHide;
         }
     }
     public void Initialize(Color color, Vector3 startingTransformPosition, int id)
@@ -41,7 +41,7 @@ public class TileComponent : MonoBehaviour
         {
             m_tileBody.onClick += ShowTileData;
             m_tileBody.onClick += m_tileBorder.TrySelect;
-            m_tileBody.onFocus += m_tileBorder.Focus;
+            m_tileBody.onFocus += m_tileBorder.TryFocus;
             m_tileBody.onUnfocus += m_tileBorder.TryHide;
         }
     }
