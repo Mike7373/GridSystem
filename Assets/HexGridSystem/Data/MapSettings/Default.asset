@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5c68c14722b134b86211dfa4a1ddf5, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: Assembly-CSharp::MapSettings
-  size: {x: 50, y: 50}
-  seed: 23
-  scale: 0.205612
+  size: {x: 49, y: 49}
+  seed: 30
+  scale: 0.34010646
   tileGenerationRate:
-  - settings: {fileID: 11400000, guid: b6fab889c6c04354ebfc7fb70f3e20be, type: 2}
-    spawnWeight: 96
-  - settings: {fileID: 11400000, guid: 65e601e83b8f29e47945b2b8c47cfdd8, type: 2}
-    spawnWeight: 65
   - settings: {fileID: 11400000, guid: eb9c6f2aa70f6d94ca5088da0b0acd10, type: 2}
+    spawnWeight: 133
+  - settings: {fileID: 11400000, guid: 2d451bbc4a125c644aa4cec601ced611, type: 2}
+    spawnWeight: 13
+  - settings: {fileID: 11400000, guid: b6fab889c6c04354ebfc7fb70f3e20be, type: 2}
+    spawnWeight: 56
+  - settings: {fileID: 11400000, guid: 65e601e83b8f29e47945b2b8c47cfdd8, type: 2}
     spawnWeight: 47
+  - settings: {fileID: 11400000, guid: 5ad9266df2fc5c549b41019529e9ba91, type: 2}
+    spawnWeight: 56
   tilePrefab: {fileID: 1905893307163530727, guid: cee4f02a24dc9d9438c1e857272c1fd7, type: 3}
-  isTileTopFlat: 0
+  isTileTopFlat: 1
