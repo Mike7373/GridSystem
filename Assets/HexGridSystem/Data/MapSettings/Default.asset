@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Default
   m_EditorClassIdentifier: Assembly-CSharp::MapSettings
   size: {x: 50, y: 50}
-  seed: 48
-  scale: 0.3
+  seed: 23
+  scale: 0.205612
   tileGenerationRate:
   - settings: {fileID: 11400000, guid: b6fab889c6c04354ebfc7fb70f3e20be, type: 2}
-    spawnWeight: 55
+    spawnWeight: 96
   - settings: {fileID: 11400000, guid: 65e601e83b8f29e47945b2b8c47cfdd8, type: 2}
-    spawnWeight: 94
+    spawnWeight: 65
   - settings: {fileID: 11400000, guid: eb9c6f2aa70f6d94ca5088da0b0acd10, type: 2}
-    spawnWeight: 27
+    spawnWeight: 47
   tilePrefab: {fileID: 1905893307163530727, guid: cee4f02a24dc9d9438c1e857272c1fd7, type: 3}
   isTileTopFlat: 1

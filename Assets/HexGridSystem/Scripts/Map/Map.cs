@@ -24,7 +24,7 @@ public class Map
         {
             for (int x = 0; x < mapSize.x; x++)
             {
-                Debug.Log($"[Map] Generating tile at position [{y}][{x}]");
+                //Debug.Log($"[Map] Generating tile at position [{y}][{x}]");
                 m_grid.Add(new Vector2Int(x, y), new Tile(NewTileSettings(x, y)).id);
             }
         }
@@ -51,13 +51,13 @@ public class Map
         float y = (yPos / (float)m_mapSize.y + m_seed) / m_scale;
 
         value = Mathf.PerlinNoise(x, y);
-        Debug.Log($"[Map/GetTileSettings] Weight value: {value} | RateMax: {rateMax}");
+        //Debug.Log($"[Map/GetTileSettings] Weight value: {value} | RateMax: {rateMax}");
         value *= rateMax;
 
         for (int i = 0, minRate = 0; i < m_generationRates.Count; i++)
         {
             int maxRate = minRate + m_generationRates[i].spawnWeight;
-            Debug.Log($"[Map/GetTileSettings] MinRate: {minRate} | MaxRate: {maxRate}");
+            //Debug.Log($"[Map/GetTileSettings] MinRate: {minRate} | MaxRate: {maxRate}");
             if (value >= minRate && value < maxRate)
             {
                 result = m_generationRates[i].settings;
@@ -66,7 +66,7 @@ public class Map
             minRate = maxRate;
         }
 
-        Debug.Log($"[Map/GetTileSettings] Tile type selected: {(result != null ? result.type.ToString() : "null")}");
+        //Debug.Log($"[Map/GetTileSettings] Tile type selected: {(result != null ? result.type.ToString() : "null")}");
         return result;
     }
 

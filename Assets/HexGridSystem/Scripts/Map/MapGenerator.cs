@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
+
     [SerializeField] private MapSettings m_mapSettings;
+    [SerializeField] private Transform m_parent;
+    [SerializeField] private Camera m_camera;
 
     private Map m_map;
 
@@ -12,13 +15,18 @@ public class MapGenerator : MonoBehaviour
     }
     public void Generate()
     {
-        m_map = new Map(m_mapSettings);
+        if (m_parent == null)
+        {
+            Debug.LogWarning($"[MapGenerator/Generate] There is no parent object set for tile instances. Generated objects will be free in the scene.");
+        }
 
         if (m_mapSettings == null)
         {
             Debug.LogError("[MapGenerator/Generate] MapSettings is not assigned on MapGenerator.", this);
             return;
         }
+
+        m_map = new Map(m_mapSettings);
 
         for (int z = 0; z < m_map.mapSize.y; z++)
         {
@@ -29,13 +37,18 @@ public class MapGenerator : MonoBehaviour
                 //GameObject hex = new GameObject($"Hex {z},{x}");
                 GameObject tileObj = Instantiate(Tile.defaultPrefab);
                 TileComponent tileComponent = tileObj.GetComponent<TileComponent>();
-                
-                tileObj.name = $"[{x},{x}] {tile.type} tile";
-                tileObj.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, z));
+                Vector3 tileTransformPosition = GetPositionForHexFromCoordinate(new Vector2Int(x, z));
 
-                tileComponent.Initialize(tile.color);
+                tileObj.name = $"[{x},{x}] {tile.type} tile";
+                tileObj.transform.position = tileTransformPosition;
+                tileComponent.Initialize(tile.color, tileTransformPosition);
+
+                if (m_parent != null)
+                    tileObj.transform.SetParent(m_parent);
             }
         }
+
+        SetCameraPosition();
     }
     private Vector3 GetPositionForHexFromCoordinate(Vector2Int coordinate)
     {
@@ -81,5 +94,19 @@ public class MapGenerator : MonoBehaviour
         }
 
         return new Vector3(transform.position.x + xPosition, 0, transform.position.z + (-zPosition));
+    }
+
+    //Update and improve this method, now it works but it's not correct
+    private void SetCameraPosition()
+    {
+        if (m_camera == null)
+        {
+            Debug.LogWarning($"[MapGenerator/Generate] Camera field is not assigner. Main camera will be used for the starting view,");
+            m_camera = Camera.main;
+        }
+
+        Vector3 newPosition = new Vector3((m_map.mapSize.x * Mathf.Sqrt(3) * 1.01f) / 2, m_camera.transform.position.y, -(m_map.mapSize.y * Mathf.Sqrt(3) * 1.01f) / 2);
+
+        m_camera.transform.position = newPosition;
     }
 }
