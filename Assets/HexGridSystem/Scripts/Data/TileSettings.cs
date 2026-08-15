@@ -14,5 +14,5 @@ public enum TileType
     Water,
     Forest,
     Mountain,
-    Desert
+    Beach
 }

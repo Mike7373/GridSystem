@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(MeshRenderer),typeof(MeshCollider))]
+[RequireComponent(typeof(MeshRenderer), typeof(MeshCollider))]
 public class TileBodyComponent : MonoBehaviour
 {
     private MeshRenderer m_meshRenderer;
     public delegate void MouseEvent();
-    
+
     public event MouseEvent onClick;
     public event MouseEvent onFocus;
     public event MouseEvent onUnfocus;
@@ -23,16 +24,22 @@ public class TileBodyComponent : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         onClick?.Invoke();
     }
     private void OnMouseEnter()
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         onFocus?.Invoke();
     }
     private void OnMouseExit()
     {
         onUnfocus?.Invoke();
     }
-
-
 }

@@ -1,9 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Canvas))]
 public class TileView : MonoBehaviour
 {
+    [SerializeField] private Image m_background;
     [SerializeField] private TMP_Text m_type;
     [SerializeField] private TMP_Text m_id;
     [SerializeField] private TMP_Text m_gridPosition;
@@ -43,6 +45,8 @@ public class TileView : MonoBehaviour
         m_type.text = "TYPE";
         m_id.text = "# ID";
         m_gridPosition.text = "(X, Y)";
+
+        m_canvas.worldCamera = Camera.main;
     }
 
     /// <summary>
@@ -71,6 +75,7 @@ public class TileView : MonoBehaviour
         Instance.m_type.text = TYPE_LABEL + tile.type.ToString();
         Instance.m_id.text = ID_LABEL + tile.id.ToString();
         Instance.m_gridPosition.text = GRID_POSITION_LABEL + position;
+        Instance.m_background.color = new Color(tile.color.r / 5, tile.color.g / 5, tile.color.b / 5, 1);
         Show();
     }
 }
