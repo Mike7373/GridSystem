@@ -32,14 +32,14 @@ public class MapGenerator : MonoBehaviour
         {
             for (int x = 0; x < m_map.mapSize.x; x++)
             {
-                Tile tile = Tile.GetTileById(m_map.grid[new Vector2Int(x, z)]);
+                Tile tile = Tile.GetTileById(m_map.grid[new Vector2Int(z, x)]);
 
                 //GameObject hex = new GameObject($"Hex {z},{x}");
                 GameObject tileObj = Instantiate(Tile.defaultPrefab);
                 TileComponent tileComponent = tileObj.GetComponent<TileComponent>();
                 Vector3 tileTransformPosition = GetPositionForHexFromCoordinate(new Vector2Int(x, z));
 
-                tileObj.name = $"[{x},{x}] {tile.type} tile";
+                tileObj.name = $"[{z},{x}] {tile.type} tile";
                 tileObj.transform.position = tileTransformPosition;
                 if (m_mapSettings.isTileTopFlat)
                 {

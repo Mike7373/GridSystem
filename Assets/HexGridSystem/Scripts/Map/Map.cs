@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Map
@@ -9,11 +10,20 @@ public class Map
     private float m_seed;
     private float m_scale;
 
+    private static Map s_instance = null;
+
     public Vector2Int mapSize => m_mapSize;
     public Dictionary<Vector2Int, int> grid => m_grid;
 
     public Map(MapSettings settings)
     {
+        if(s_instance != null)
+        {
+            Debug.LogWarning("[Map] Too many object of type Map! This one will be destroyed.");
+            return;
+        }
+        s_instance = this;
+
         m_grid = new Dictionary<Vector2Int, int>();
         m_mapSize = settings.size;  
         m_generationRates = settings.tileGenerationRate;
@@ -24,7 +34,7 @@ public class Map
         {
             for (int x = 0; x < mapSize.x; x++)
             {
-                Debug.Log($"[Map] Generating tile at position [{y}][{x}]");
+                //Debug.Log($"[Map] Generating tile at position [{y}][{x}]");
                 m_grid.Add(new Vector2Int(x, y), new Tile(NewTileSettings(x, y)).id);
             }
         }
@@ -51,13 +61,13 @@ public class Map
         float y = (yPos / (float)m_mapSize.y + m_seed) / m_scale;
 
         value = Mathf.Abs(Mathf.PerlinNoise(x, y));
-        Debug.Log($"[Map/GetTileSettings] Weight value: {value} | RateMax: {rateMax}");
+        //Debug.Log($"[Map/GetTileSettings] Weight value: {value} | RateMax: {rateMax}");
         value *= rateMax;
 
         for (int i = 0, minRate = 0; i < m_generationRates.Count; i++)
         {
             int maxRate = minRate + m_generationRates[i].spawnWeight;
-            Debug.Log($"[Map/GetTileSettings] MinRate: {minRate} | MaxRate: {maxRate}");
+            //Debug.Log($"[Map/GetTileSettings] MinRate: {minRate} | MaxRate: {maxRate}");
             if (value >= minRate && value < maxRate)
             {
                 result = m_generationRates[i].settings;
@@ -66,12 +76,17 @@ public class Map
             minRate = maxRate;
         }
 
-        Debug.Log($"[Map/GetTileSettings] Tile type selected: {(result != null ? result.type.ToString() : "null")}");
+        //Debug.Log($"[Map/GetTileSettings] Tile type selected: {(result != null ? result.type.ToString() : "null")}");
         return result;
     }
 
     public bool IsCellEmpty(Vector2Int coordinates)
     {
         return !m_grid.ContainsKey(coordinates);
+    }
+
+    public static Vector2Int GetGridPositionFromId(int id)
+    {
+        return s_instance.m_grid.FirstOrDefault(x => x.Value == id).Key;
     }
 }
