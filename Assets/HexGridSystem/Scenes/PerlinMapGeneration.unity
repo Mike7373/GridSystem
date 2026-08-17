@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b994cb451bfd954aa2308f6779f1ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
-  m_dragSensitivity: 5
+  m_dragSensitivity: 7
 --- !u!1001 &9123343120818784597
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -27,15 +28,15 @@ public class Map
         m_grid = new Dictionary<Vector2Int, int>();
         m_mapSize = settings.size;  
         m_generationRates = settings.tileGenerationRate;
-        m_seed = settings.seed;
+        m_seed = UnityEngine.Random.Range(0,1000);
         m_scale = settings.scale;
 
         for (int y = 0; y < mapSize.y; y++)
         {
             for (int x = 0; x < mapSize.x; x++)
             {
-                //Debug.Log($"[Map] Generating tile at position [{y}][{x}]");
-                m_grid.Add(new Vector2Int(x, y), new Tile(NewTileSettings(x, y)).id);
+                Debug.Log($"[Map] Generating tile at position [{y}][{x}]");
+                m_grid.Add(new Vector2Int(y, x), new Tile(NewTileSettings(y, x)).id);
             }
         }
     }
@@ -79,7 +80,11 @@ public class Map
         //Debug.Log($"[Map/GetTileSettings] Tile type selected: {(result != null ? result.type.ToString() : "null")}");
         return result;
     }
-
+    public static void Reset()
+    {
+        GC.SuppressFinalize(s_instance);
+        s_instance = null;
+    }
     public bool IsCellEmpty(Vector2Int coordinates)
     {
         return !m_grid.ContainsKey(coordinates);

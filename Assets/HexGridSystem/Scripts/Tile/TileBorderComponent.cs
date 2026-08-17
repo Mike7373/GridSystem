@@ -14,6 +14,14 @@ public class TileBorderComponent : MonoBehaviour
     {
         _meshRenderer = GetComponent<MeshRenderer>();
     }
+    private void OnEnable()
+    {
+        TileView.onViewClosed += Hide;
+    }
+    private void OnDisable()
+    {
+        TileView.onViewClosed -= Hide;
+    }
     private void Start()
     {
         Initialize();
@@ -58,6 +66,10 @@ public class TileBorderComponent : MonoBehaviour
     }
     public void Hide()
     {
+        if(selectedTile == this)
+        {
+            selectedTile = null;
+        }
         MaterialPropertyBlock block = new MaterialPropertyBlock();
         block.SetColor("_BaseColor", new Color(0, 0, 0, 0));
         _meshRenderer.SetPropertyBlock(block);

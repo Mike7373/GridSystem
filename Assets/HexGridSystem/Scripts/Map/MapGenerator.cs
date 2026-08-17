@@ -13,6 +13,7 @@ public class MapGenerator : MonoBehaviour
     {
         Generate();
     }
+
     public void Generate()
     {
         if (m_parent == null)
@@ -51,8 +52,16 @@ public class MapGenerator : MonoBehaviour
                     tileObj.transform.SetParent(m_parent);
             }
         }
-
         SetCameraPosition();
+    }
+
+    [ContextMenu("Regenerate Map")]
+    public void RegenerateMap()
+    {
+        Tile.Reset();
+        Map.Reset();
+        TileComponent.Reset();
+        Generate();
     }
     private Vector3 GetPositionForHexFromCoordinate(Vector2Int coordinate)
     {
@@ -78,7 +87,7 @@ public class MapGenerator : MonoBehaviour
             verticalDistance = height * (3f / 4f);
 
             offset = shouldOffset ? width / 2 : 0;
-
+            
             xPosition = column * horizontalDistance + offset;
             zPosition = row * verticalDistance;
 

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,8 @@ public class TileView : MonoBehaviour
     private Canvas m_canvas;
     private static TileView s_instance;
     public static TileView Instance => s_instance;
+
+    public static Action onViewClosed;
 
     private void Awake()
     {
@@ -55,6 +58,7 @@ public class TileView : MonoBehaviour
     public static void Hide()
     {
         Instance.m_canvas.enabled = false;
+        onViewClosed?.Invoke();
     }
     /// <summary>
     /// Show the canvas.
@@ -75,7 +79,7 @@ public class TileView : MonoBehaviour
         Instance.m_type.text = TYPE_LABEL + tile.type.ToString();
         Instance.m_id.text = ID_LABEL + tile.id.ToString();
         Instance.m_gridPosition.text = GRID_POSITION_LABEL + position;
-        Instance.m_background.color = new Color(tile.color.r / 5, tile.color.g / 5, tile.color.b / 5, 1);
+        Instance.m_background.color = new Color(tile.color.r / 3, tile.color.g / 3, tile.color.b / 3, 1);
         Show();
     }
 }
