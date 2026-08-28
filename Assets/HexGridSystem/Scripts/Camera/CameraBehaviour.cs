@@ -5,9 +5,9 @@ public class CameraBehaviour : MonoBehaviour
 {
     [Header("Zoom")]
     [SerializeField, Range(0, 3)] private float m_zoomSensitivity = 1f;
-    [Tooltip("How many time the player can zoom in from the base camera position")]
+    [Tooltip("How many time the player can <b>zoom in</b> from the base camera position")]
     [SerializeField, Min(0)] private int m_maxZoomIn = 2;
-    [Tooltip("How many time the player can zoom out from the base camera position")]
+    [Tooltip("How many time the player can <b>zoom out</b> from the base camera position")]
     [SerializeField, Min(0)] private int m_maxZoomOut = 5;
     [Header("Movement")]
     [SerializeField, Range(0, 3)] private float m_dragSensitivity = 1f;
