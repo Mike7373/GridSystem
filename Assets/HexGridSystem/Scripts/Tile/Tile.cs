@@ -22,7 +22,7 @@ public class Tile
     {
         onReset += KillInstance;
 
-        if(s_defaultPrefab == null)
+        if (s_defaultPrefab == null)
         {
             s_defaultPrefab = settings.defaultPrefab;
         }
@@ -30,7 +30,7 @@ public class Tile
         m_type = settings.type;
         m_color = settings.color;
         m_id = s_instanceCount++;
-        
+
         s_instances.Add(this);
     }
 

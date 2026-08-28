@@ -35,7 +35,7 @@ public class Map
         {
             for (int x = 0; x < mapSize.x; x++)
             {
-                Debug.Log($"[Map] Generating tile at position [{y}][{x}]");
+                //Debug.Log($"[Map] Generating tile at position [{y}][{x}]");
                 m_grid.Add(new Vector2Int(y, x), new Tile(NewTileSettings(y, x)).id);
             }
         }
