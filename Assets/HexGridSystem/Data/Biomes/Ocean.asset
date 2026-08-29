@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0079e9abfc5564095a5001a400d65d, type: 3}
   m_Name: Ocean
   m_EditorClassIdentifier: Assembly-CSharp::BiomeSettings
+  mainTile: {fileID: 11400000, guid: eb9c6f2aa70f6d94ca5088da0b0acd10, type: 2}
+  dynamicTiles:
+  - tile: {fileID: 11400000, guid: 2d451bbc4a125c644aa4cec601ced611, type: 2}
+    minMoistureValue: 0.725
+    maxMoistureValue: 1
+  dynamicPrefabs: []
+  dynamicPrefabsSpawnRate: 20

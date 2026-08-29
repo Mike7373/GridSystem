@@ -36,7 +36,7 @@ public class MapGenerator : MonoBehaviour
                 Tile tile = Tile.GetTileById(m_map.grid[new Vector2Int(z, x)]);
 
                 //GameObject hex = new GameObject($"Hex {z},{x}");
-                GameObject tileObj = Instantiate(Tile.defaultPrefab);
+                GameObject tileObj = Instantiate(Tile.GetPrefabToSpawn());
                 TileComponent tileComponent = tileObj.GetComponent<TileComponent>();
                 Vector3 tileTransformPosition = GetPositionForHexFromCoordinate(new Vector2Int(x, z));
 
