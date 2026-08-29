@@ -25,8 +25,8 @@ public class CameraBehaviour : MonoBehaviour
 
     private void Update()
     {
-        SetDragging();
         TryZoom();
+        SetDragging();
         if (!m_isDragging || !Input.GetMouseButton(2)) return;
         Move();
     }

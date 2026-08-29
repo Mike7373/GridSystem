@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52581db3c22dd7b439444a334d3359c6, type: 3}
-  m_Name: Beach
+  m_Name: Sand
   m_EditorClassIdentifier: Assembly-CSharp::TileSettings
   type: 4
   color: {r: 0.7599724, g: 0.78113204, b: 0.0103167975, a: 1}

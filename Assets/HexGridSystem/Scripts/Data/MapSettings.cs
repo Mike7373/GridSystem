@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MapSettings", menuName = "Map Generation/Map Data")]
+[CreateAssetMenu(fileName = "MapSettings", menuName = "Map Generation/Map Settings")]
 public class MapSettings : ScriptableObject
 {
     [Header("Map Generation Settings")]

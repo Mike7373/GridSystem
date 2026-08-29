@@ -554,7 +554,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
   m_zoomSensitivity: 1
-  m_dragSensitivity: 1.4
+  m_maxZoomIn: 2
+  m_maxZoomOut: 5
+  m_dragSensitivity: 1.19
 --- !u!1001 &9123343120818784597
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,8 +8,11 @@ public class Map
     private Dictionary<Vector2Int, int> m_grid;
     private Vector2Int m_mapSize;
     private List<TileGenerationRate> m_generationRates = new();
-    private float m_seed;
     private float m_scale;
+    private float m_seed;
+    private Vector2 m_heightOffset;
+    private Vector2 m_temperatureOffset;
+    private Vector2 m_moistureOffset;
 
     private static Map s_instance = null;
 
@@ -18,7 +21,7 @@ public class Map
 
     public Map(MapSettings settings)
     {
-        if(s_instance != null)
+        if (s_instance != null)
         {
             Debug.LogWarning("[Map] Too many object of type Map! This one will be destroyed.");
             return;
@@ -26,9 +29,11 @@ public class Map
         s_instance = this;
 
         m_grid = new Dictionary<Vector2Int, int>();
-        m_mapSize = settings.size;  
+        m_mapSize = settings.size;
         m_generationRates = settings.tileGenerationRate;
-        m_seed = UnityEngine.Random.Range(0,1000);
+
+        m_seed = GenerateSeed();
+
         m_scale = settings.scale;
 
         for (int y = 0; y < mapSize.y; y++)
@@ -40,7 +45,16 @@ public class Map
             }
         }
     }
+    private float GenerateSeed()
+    {
+        float seed = UnityEngine.Random.Range(0, 1000);
 
+        m_heightOffset = new Vector2(seed + 1000, seed + 1000);
+        m_temperatureOffset = new Vector2(seed - 2000, seed + 2000);
+        m_moistureOffset = new Vector2(seed + 3000, seed - 3000);
+
+        return seed;
+    }
     private TileSettings NewTileSettings(int xPos, int yPos)
     {
         if (m_generationRates.Count <= 0)
